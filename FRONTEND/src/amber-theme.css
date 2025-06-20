@@ -1,0 +1,45 @@
+/* Amber color palette */
+:root {
+  --amber-50: #fffbeb;
+  --amber-100: #fef3c7;
+  --amber-200: #fde68a;
+  --amber-300: #fcd34d;
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
+  --amber-600: #d97706;
+  --amber-700: #b45309;
+  --amber-800: #92400e;
+  --amber-900: #78350f;
+}
+
+/* Button styles */
+.btn-amber {
+  background-color: var(--amber-500);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-amber:hover {
+  background-color: var(--amber-600);
+}
+
+/* Card styles */
+.card-amber {
+  border: 1px solid var(--amber-200);
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Status badges */
+.badge-amber {
+  background-color: var(--amber-100);
+  color: var(--amber-800);
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
