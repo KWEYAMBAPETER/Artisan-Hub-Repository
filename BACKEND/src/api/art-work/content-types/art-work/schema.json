@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "art_works",
+  "info": {
+    "singularName": "art-work",
+    "pluralName": "art-works",
+    "displayName": "ArtWork"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "richtext",
+      "required": true
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "Paintings",
+        "Digital Art",
+        "Albums",
+        "Graphics"
+      ]
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "availability": {
+      "type": "enumeration",
+      "enum": [
+        "available",
+        "pending",
+        "sold"
+      ]
+    },
+    "deliveryOption": {
+      "type": "enumeration",
+      "enum": [
+        "pickup",
+        "pickup/delivery"
+      ]
+    },
+    "Location": {
+      "type": "string"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::order.order",
+      "mappedBy": "art_works"
+    }
+  }
+}

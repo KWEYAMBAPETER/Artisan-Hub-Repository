@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "art_works": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::art-work.art-work",
+      "inversedBy": "orders"
+    },
+    "deliveryType": {
+      "type": "enumeration",
+      "default": "pickup",
+      "enum": [
+        "pickup",
+        "home delivery"
+      ]
+    },
+    "deliveryAddress": {
+      "type": "component",
+      "component": "common.delivery-address",
+      "repeatable": false
+    },
+    "totalPrice": {
+      "type": "biginteger"
+    },
+    "orderStatus": {
+      "type": "enumeration",
+      "enum": [
+        "placed",
+        "fulfilled"
+      ]
+    }
+  }
+}
