@@ -6,8 +6,10 @@ import EventList from './assets/components/EventList';
 import AddEvent from './assets/Components/AddEvent';
 import EventDetail from './assets/Components/EventDetail';
 import './App.css';
+import LandingPage from './assets/LandingPage';
 
 function App() {
+  
   const LOCAL_STORAGE_KEY = "eventManagerData";
   const [events, setEvents] = useState([]);
   const [notification, setNotification] = useState(null);
@@ -103,6 +105,7 @@ function App() {
 
   return (
     <Router>
+      <LandingPage/>
       <div className="app-container">
         {notification && (
           <div className={`notification notification-${notification.type}`}>

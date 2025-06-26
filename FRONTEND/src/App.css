@@ -401,6 +401,61 @@
   to { transform: translateX(0); opacity: 1; }
 }
 
+/* Date bubble styling */
+.date-bubble {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.date-bubble.today {
+  background-color: #3b82f6;
+  animation: pulse 2s infinite;
+}
+
+.date-bubble.soon {
+  background-color: #f59e0b;
+}
+
+.date-bubble.ended {
+  background-color: #ef4444;
+}
+
+.date-bubble.upcoming {
+  background-color: #10b981;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Event card status indicators */
+.event-card.today {
+  border-left: 3px solid #05f260;
+}
+
+.event-card.soon {
+  border-left: 3px solid #f59e0b;
+}
+
+.event-card.ended {
+  border-left: 3px solid #ef4444;
+  opacity: 0.9;
+}
+
+.event-meta {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
 /* Amber Color Scheme */
 .btn-amber {
   background-color: #FFA000;
@@ -408,7 +463,7 @@
 }
 
 .btn-amber:hover {
-  background-color: #FF8F00;
+  background-color: #d712a2;
 }
 
 .bg-amber {
@@ -420,6 +475,66 @@
 }
 
 /* Form Styles */
+/* User type modal */
+.user-type-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.user-type-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.user-type-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.user-type-buttons button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #4f46e5;
+  color: white;
+}
+
+/* Access denied message */
+.access-denied {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  text-align: center;
+  background: rgb(243, 243, 200);
+  border-radius: 8px;
+  color: red;
+}
+
+.access-denied button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .form-control {
   margin-bottom: 15px;
 }
