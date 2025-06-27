@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* ContactPage Styles */
+.contact-hero {
+    background-image: url('./assets/dig-art-1.jpg');
+    object-fit: cover;
+    object-position: center;
+    padding: 15px;
+    width: 100%;
+}

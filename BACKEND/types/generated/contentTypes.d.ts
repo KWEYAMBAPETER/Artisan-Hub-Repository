@@ -365,6 +365,7 @@ export interface AdminUser extends Schema.CollectionType {
 export interface ApiArtWorkArtWork extends Schema.CollectionType {
   collectionName: 'art_works';
   info: {
+    description: '';
     displayName: 'ArtWork';
     pluralName: 'art-works';
     singularName: 'art-work';
@@ -373,9 +374,14 @@ export interface ApiArtWorkArtWork extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    availability: Attribute.Enumeration<['available', 'pending', 'sold']>;
-    Category: Attribute.Enumeration<
-      ['Paintings', 'Digital Art', 'Albums', 'Graphics']
+    artist: Attribute.Relation<
+      'api::art-work.art-work',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    artStatus: Attribute.Enumeration<['available', 'pending', 'sold']>;
+    category: Attribute.Enumeration<
+      ['Paintings', 'Digital Art', 'Woodwork', 'Sculptures']
     >;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -384,8 +390,8 @@ export interface ApiArtWorkArtWork extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    deliveryOption: Attribute.Enumeration<['pickup', 'pickup/delivery']>;
-    Description: Attribute.RichText & Attribute.Required;
+    deliveryOption: Attribute.Enumeration<['pickup', 'delivery']>;
+    description: Attribute.RichText & Attribute.Required;
     images: Attribute.Media<'images' | 'files', true>;
     Location: Attribute.String;
     orders: Attribute.Relation<
@@ -514,6 +520,7 @@ export interface ApiFaqFaq extends Schema.CollectionType {
 export interface ApiOrderOrder extends Schema.CollectionType {
   collectionName: 'orders';
   info: {
+    description: '';
     displayName: 'Order';
     pluralName: 'orders';
     singularName: 'order';
@@ -526,6 +533,16 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'api::order.order',
       'manyToMany',
       'api::art-work.art-work'
+    >;
+    artworks: Attribute.Relation<
+      'api::order.order',
+      'manyToMany',
+      'api::art-work.art-work'
+    >;
+    buyer: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -886,6 +903,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     timestamps: true;
   };
   attributes: {
+    art_works: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::art-work.art-work'
+    >;
     blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
     confirmationToken: Attribute.String & Attribute.Private;
     confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -901,6 +923,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    orders: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::order.order'
+    >;
     password: Attribute.Password &
       Attribute.Private &
       Attribute.SetMinMaxLength<{

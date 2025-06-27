@@ -4,7 +4,8 @@
   "info": {
     "singularName": "art-work",
     "pluralName": "art-works",
-    "displayName": "ArtWork"
+    "displayName": "ArtWork",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,17 +17,17 @@
       "required": true,
       "unique": true
     },
-    "Description": {
+    "description": {
       "type": "richtext",
       "required": true
     },
-    "Category": {
+    "category": {
       "type": "enumeration",
       "enum": [
         "Paintings",
         "Digital Art",
-        "Albums",
-        "Graphics"
+        "Woodwork",
+        "Sculptures"
       ]
     },
     "price": {
@@ -35,12 +36,13 @@
     "images": {
       "type": "media",
       "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files"
       ]
     },
-    "availability": {
+    "artStatus": {
       "type": "enumeration",
       "enum": [
         "available",
@@ -52,7 +54,7 @@
       "type": "enumeration",
       "enum": [
         "pickup",
-        "pickup/delivery"
+        "delivery"
       ]
     },
     "Location": {
@@ -62,7 +64,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::order.order",
-      "mappedBy": "art_works"
+      "mappedBy": "artworks"
+    },
+    "artist": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "art_works"
     }
   }
 }
