@@ -1,23 +1,3 @@
-// module.exports = ({ env }) => ({
-//     email: {
-//         config: {
-//             provider: 'sendgrid',
-//             providerOptions: {
-//                 host: env('SENDGRID_HOST'),
-//                 port: 587,
-//                 auth: {
-//                     user: 'apiKey',
-//                     pass: env('SENDGRID_API_KEY'),
-//                 },
-//             },
-//             settings: {
-//                 defaultFrom: env('SENDGRID_DEFAULT_FROM'),
-//                 defaultReplyTo: env('SENDGRID_REPLY_TO'),
-//             },
-//         },
-//     },
-// });
-
 module.exports = ({ env }) => ({
   // ...
   email: {
@@ -33,5 +13,13 @@ module.exports = ({ env }) => ({
       },
     },
   },
-  // ...
+  // "users-permissions": {
+  //   config: {
+  //     register: {
+  //       allowedFields: ["role"],
+  //     },
+  //   },
+  // },
+  
+  
 });

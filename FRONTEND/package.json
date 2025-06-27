@@ -11,6 +11,7 @@
     "build:css": "tailwindcss build src/styles/index.css -o src/styles/tailwind.css"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
     "@mantine/carousel": "^8.1.1",
     "@mantine/charts": "^8.1.1",
     "@mantine/code-highlight": "^8.1.1",
@@ -24,11 +25,13 @@
     "@mantine/nprogress": "^8.1.1",
     "@mantine/spotlight": "^8.1.1",
     "@mantine/tiptap": "^8.1.1",
+    "@tabler/icons-react": "^3.34.0",
     "@tailwindcss/vite": "^4.1.10",
     "@tiptap/extension-link": "^2.22.3",
     "@tiptap/pm": "^2.22.3",
     "@tiptap/react": "^2.22.3",
     "@tiptap/starter-kit": "^2.22.3",
+    "axios": "^1.10.0",
     "dayjs": "^1.11.13",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
