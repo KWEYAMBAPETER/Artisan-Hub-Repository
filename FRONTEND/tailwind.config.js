@@ -1,13 +1,12 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}" // Required for Flowbite
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@mantine/core/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
+    "./node_modules/flowbite-react/**/*.{js,jsx}",
   ],
-  theme: {
-    extend: {},
-  },
   plugins: [
-    require("flowbite/plugin") // Enables Flowbite components
+    require("@tailwindcss/forms"),
+    require("flowbite/plugin"),
   ],
-}
+};
