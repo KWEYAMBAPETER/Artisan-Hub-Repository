@@ -114,7 +114,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <>
       <LandingPage/>
       <div className="app-container">
         {notification && (
@@ -124,8 +124,7 @@ function App() {
         )}
         <Header />
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={
+            {/* <Route path="/" element={
               <EventList 
                 events={events} 
                 onRemoveEvent={removeEventHandler} 
@@ -136,11 +135,10 @@ function App() {
             } />
             <Route path="/event/:id" element={
               <EventDetail events={events} />
-            } />
-          </Routes>
+            } /> */}
         </main>
       </div>
-    </Router>
+    </>
   );
 }
 
