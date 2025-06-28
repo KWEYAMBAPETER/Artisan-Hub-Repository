@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 //import Logo from '../images/Logo.jpg';
 
 const Navbar = () => {
@@ -12,7 +13,7 @@ const Navbar = () => {
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="#" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <img
                 src='https://images.unsplash.com/photo-1746469535771-71a672e8719f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                 className="h-20 w-20 rounded-full border-2 border-amber-100 shadow-sm"
@@ -21,17 +22,17 @@ const Navbar = () => {
               <span className="self-center text-2xl font-bold whitespace-nowrap text-amber-800">
                 Artisan Hub
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* large screen Navigation */}
           <div className="hidden md:ml-6 md:flex md:items-center md:space-x-8">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="text-amber-900 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-all duration-200 border-b-2 border-transparent hover:border-amber-400"
             >
               Home
-            </a>
+            </Link>
             <a
               href="#about-us"
               className="text-amber-900 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-all duration-200 border-b-2 border-transparent hover:border-amber-400"
@@ -50,9 +51,9 @@ const Navbar = () => {
             >
               Contact Us
             </a>
-            <a href="https://weatherandqoutes.netlify.app/">
+            <Link to="/login">
               <button className="ml-4 px-6 py-2 bg-amber-600 text-white font-medium rounded-full shadow-sm hover:bg-amber-700 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
-                Get Started
+                Sign In
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 inline ml-1"
@@ -66,7 +67,7 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
