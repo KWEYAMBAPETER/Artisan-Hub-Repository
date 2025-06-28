@@ -13,7 +13,7 @@ import {
 } from "@mantine/core";
 import heroImage from "../assets/dig-art-1.jpg";
 import { useForm, hasLength, isEmail, isNotEmpty } from "@mantine/form";
-import Navbar from "../assets/Components/Navbar";
+import Navbar from "../components/Navbar";
 import { API_URL } from "../constants";
 import axios from "axios";
 

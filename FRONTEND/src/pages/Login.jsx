@@ -19,7 +19,7 @@ import {
 } from "@mantine/core";
 
 import { IconUser, IconLock, IconBrandGoogle } from "@tabler/icons-react";
-import SlidingNotification from "../assets/Components/SlidingNotification";
+import SlidingNotification from "../components/SlidingNotification";
 
 function Login() {
   const { login, user } = useAuth();

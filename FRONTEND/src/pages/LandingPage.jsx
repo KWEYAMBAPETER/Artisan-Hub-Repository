@@ -1,11 +1,11 @@
 
 import { useEffect } from 'react';
-import Navbar from '../assets/Components/Navbar';
-import Hero from '../assets/Components/Hero';
-import About from '../assets/Components/About';
-import WhyChooseUs from '../assets/Components/WhyChooseUs';
-import Contact from '../assets/Components/Contact';
-import Journey from '../assets/Components/Journey';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import About from '../components/About';
+import WhyChooseUs from '../components/WhyChooseUs';
+import Contact from '../components/Contact';
+import Journey from '../components/Journey';
 
 function LandingPage() {
   useEffect(() => {

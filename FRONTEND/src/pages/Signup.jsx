@@ -23,7 +23,7 @@ import {
   IconBrandGoogle,
 } from "@tabler/icons-react";
 import { API_URL } from "../constants";
-import SlidingNotification from "../assets/Components/SlidingNotification";
+import SlidingNotification from "../components/SlidingNotification";
 
 function Signup() {
   const { login } = useAuth();

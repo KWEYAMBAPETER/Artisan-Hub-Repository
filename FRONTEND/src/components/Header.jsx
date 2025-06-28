@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../auth/useAuth';
+import { useAuth } from '../auth/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 
