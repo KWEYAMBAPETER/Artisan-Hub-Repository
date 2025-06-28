@@ -11,8 +11,9 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
-import heroImage from "../assets/dig-art-1.jpg"
+import heroImage from "../assets/dig-art-1.jpg";
 import { useForm, hasLength, isEmail, isNotEmpty } from "@mantine/form";
+import Navbar from "../assets/Components/Navbar";
 import { API_URL } from "../constants";
 import axios from "axios";
 
@@ -42,18 +43,17 @@ function ContactPage() {
       message: isNotEmpty("Please enter your message"),
     },
   });
-  
+
   const handleSubmit = async (values) => {
     setIsLoading(true);
     try {
-      console.log("Submitting values ...", values)
+      console.log("Submitting values ...", values);
       await axios.post(`${API_URL}/contact-messages`, {
         data: values,
       });
       setSuccess(true);
       form.reset();
       setTimeout(() => setSuccess(null), 5000);
-
     } catch (error) {
       setSuccess(false);
       setTimeout(() => setSuccess(null), 5000);
@@ -64,19 +64,27 @@ function ContactPage() {
 
   return (
     <>
-    <Stack className="contact-hero" spacing="sm" mb="xl" align="center" ta="center">
+      <Navbar />
+
+      <Box style={{ paddingTop: "50px" }}>
+        <Stack
+          className="contact-hero"
+          spacing="sm"
+          mt="xl"
+          align="center"
+          ta="center"
+          styling={{ position: "fixed" }}
+        >
           <Title order={2} c="white">
             Leave a Comment
-        </Title>
-        <Text size="md" c="white">
-            Have an inquiry or suggestion? Send us a message, we'd love to 
-            hear from you
-        </Text>
-      </Stack>
-    <Container size="md" py="xl">
-      
-
-      {/* {success !== null && (
+          </Title>
+          <Text size="md" c="white">
+            Have an inquiry or suggestion? Send us a message, we'd love to hear
+            from you
+          </Text>
+        </Stack>
+        <Container size="md" py="xl" mt="xl">
+          {/* {success !== null && (
         <Notification
           color={success ? "teal" : "red"}
           title={success ? "Success" : "Error"}
@@ -90,62 +98,63 @@ function ContactPage() {
         </Notification>
       )} */}
 
-      {success === true && (
-        <Notification color="teal" title="Success" mb="md">
-          Your message has been sent!
-        </Notification>
-      )}
-      {success === false && (
-        <Notification color="red" title="Error" mb="md">
-          Something went wrong. Try again later.
-        </Notification>
-      )}
+          {success === true && (
+            <Notification color="teal" title="Success" mb="md">
+              Your message has been sent!
+            </Notification>
+          )}
+          {success === false && (
+            <Notification color="red" title="Error" mb="md">
+              Something went wrong. Try again later.
+            </Notification>
+          )}
 
-      <Box component="form" onSubmit={form.onSubmit(handleSubmit)}>
-        <TextInput
-          label="Name"
-          placeholder="Enter your name"
-          mb="sm"
-          withAsterisk
-          key={form.key('name')}
-          {...form.getInputProps("name")}
-        />
+          <Box component="form" onSubmit={form.onSubmit(handleSubmit)}>
+            <TextInput
+              label="Name"
+              placeholder="Enter your name"
+              mb="sm"
+              withAsterisk
+              key={form.key("name")}
+              {...form.getInputProps("name")}
+            />
 
-        <TextInput
-          label="Email"
-          placeholder="Enter your email"
-          mb="sm"
-          withAsterisk
-          key={form.key('email')}
-          {...form.getInputProps("email")}
-        />
+            <TextInput
+              label="Email"
+              placeholder="Enter your email"
+              mb="sm"
+              withAsterisk
+              key={form.key("email")}
+              {...form.getInputProps("email")}
+            />
 
-        <TextInput
-          label="Subject"
-          placeholder="Message subject"
-          mb="sm"
-          withAsterisk
-          key={form.key('subject')}
-          {...form.getInputProps("subject")}
-        />
+            <TextInput
+              label="Subject"
+              placeholder="Message subject"
+              mb="sm"
+              withAsterisk
+              key={form.key("subject")}
+              {...form.getInputProps("subject")}
+            />
 
-        <Textarea
-          label="Message"
-          placeholder="Type your message..."
-          mb="md"
-          withAsterisk
-          minRows={5}
-          key={form.key('message')}
-          {...form.getInputProps("message")}
-        />
+            <Textarea
+              label="Message"
+              placeholder="Type your message..."
+              mb="md"
+              withAsterisk
+              minRows={5}
+              key={form.key("message")}
+              {...form.getInputProps("message")}
+            />
 
-        <Group position="right">
-          <Button type="submit" loading={isLoading}>
-            Send Message
-          </Button>
-        </Group>
+            <Group position="right">
+              <Button type="submit" loading={isLoading}>
+                Send Message
+              </Button>
+            </Group>
+          </Box>
+        </Container>
       </Box>
-    </Container>
     </>
   );
 }

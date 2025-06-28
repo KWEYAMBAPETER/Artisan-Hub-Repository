@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom"
 
 const Contact = () => {
   return (
@@ -37,7 +38,7 @@ const Contact = () => {
               </div>
 
               <div className="pt-6 border-t border-amber-50">
-                <h3 className="text-xl font-semibold text-amber-700 mb-2">
+                {/* <h3 className="text-xl font-semibold text-amber-700 mb-2">
                   For Members-only Benefits:
                 </h3>
                 
@@ -89,8 +90,13 @@ const Contact = () => {
                       />
                     </svg>
                     Priority support
-                  </li>
-                </ul>
+                  </li> 
+                </ul> */}
+                <Link to="/contact">
+                  <button className="w-full px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg shadow-md transition-all transform hover:scale-[1.02]">
+                    Send us a message
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -103,23 +109,22 @@ const Contact = () => {
                 Member-Exclusive Access
               </h3>
               <p className="text-gray-700 mb-6">
-                Unlock direct messaging with artisans, custom order requests, exclessive features
-                and wholesale pricing by signing into your account.
+                Unlock checkout for orders, or if you're an artist, manage your inventory by signing into your account.
               </p>
 
               <div className="space-y-4">
-                <a href="https://weatherandqoutes.netlify.app/">
+                <Link to="/login">
                   <button className="w-full px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg shadow-md transition-all transform hover:scale-[1.02]">
                     Sign In to Your Account
                   </button>
-                </a>
+                </Link>
 
                 <div className="text-center text-sm text-gray-600">or</div>
-                <a href="https://weatherandqoutes.netlify.app/">
+                <Link to="/signup">
                   <button className="w-full px-6 py-3 bg-white border-2 border-amber-300 text-amber-700 font-medium rounded-lg hover:bg-amber-50 transition-all">
                     Create Free Account
                   </button>
-                </a>
+                </Link>
               </div>
 
               <div className="mt-6 flex items-center justify-center space-x-2">
