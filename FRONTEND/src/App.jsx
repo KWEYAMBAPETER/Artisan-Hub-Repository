@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
-import Header from './assets/Components/Header';
-import EventList from './assets/components/EventList';
-import AddEvent from './assets/Components/AddEvent';
-import EventDetail from './assets/Components/EventDetail';
-import './App.css';
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import EventDetail from "./assets/Components/EventDetail";
+import EventList from "./assets/components/EventList";
+import AddEvent from "./assets/Components/AddEvent";
+import Header from "./assets/Components/Header";
 import LandingPage from './assets/LandingPage';
+import { v4 as uuid } from "uuid";
+import "./App.css";
+
 
 function App() {
   
@@ -17,7 +18,7 @@ function App() {
   // Cleanup expired events (runs on app load and every hour)
   const cleanupExpiredEvents = (eventsList) => {
     const now = new Date();
-    return eventsList.filter(event => {
+    return eventsList.filter((event) => {
       const eventDate = new Date(event.date);
       const expiryDate = new Date(eventDate);
       expiryDate.setDate(eventDate.getDate() + 2); // 2 days after event
@@ -36,7 +37,10 @@ function App() {
           if (cleanedEvents.length !== parsedData.length) {
             // Only update if events were actually removed
             setEvents(cleanedEvents);
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cleanedEvents));
+            localStorage.setItem(
+              LOCAL_STORAGE_KEY,
+              JSON.stringify(cleanedEvents)
+            );
           } else {
             setEvents(parsedData);
           }
@@ -49,10 +53,13 @@ function App() {
 
     // Set up hourly cleanup
     const interval = setInterval(() => {
-      setEvents(prev => {
+      setEvents((prev) => {
         const cleanedEvents = cleanupExpiredEvents(prev);
         if (cleanedEvents.length !== prev.length) {
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cleanedEvents));
+          localStorage.setItem(
+            LOCAL_STORAGE_KEY,
+            JSON.stringify(cleanedEvents)
+          );
           return cleanedEvents;
         }
         return prev;
@@ -78,24 +85,27 @@ function App() {
 
   // Rest of your original functions remain exactly the same
   const addEventHandler = (newEvent) => {
-    setEvents(prev => [{
-      id: uuid(),
-      title: newEvent.title.trim(),
-      date: newEvent.date,
-      description: newEvent.description.trim(),
-      location: newEvent.location || '',
-      theme: newEvent.theme || 'general',
-      coverImage: newEvent.coverImage || null,
-      status: newEvent.status || 'draft',
-      type: newEvent.type || 'workshop',
-      createdAt: new Date().toISOString()
-    }, ...prev]);
-    showNotification('Event added successfully!', 'success');
+    setEvents((prev) => [
+      {
+        id: uuid(),
+        title: newEvent.title.trim(),
+        date: newEvent.date,
+        description: newEvent.description.trim(),
+        location: newEvent.location || "",
+        theme: newEvent.theme || "general",
+        coverImage: newEvent.coverImage || null,
+        status: newEvent.status || "draft",
+        type: newEvent.type || "workshop",
+        createdAt: new Date().toISOString(),
+      },
+      ...prev,
+    ]);
+    showNotification("Event added successfully!", "success");
   };
 
   const removeEventHandler = (id) => {
-    setEvents(prev => prev.filter(event => event.id !== id));
-    showNotification('Event deleted successfully', 'success');
+    setEvents((prev) => prev.filter((event) => event.id !== id));
+    showNotification("Event deleted successfully", "success");
   };
 
   const showNotification = (message, type) => {

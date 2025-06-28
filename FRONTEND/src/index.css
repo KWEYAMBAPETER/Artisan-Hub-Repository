@@ -1,6 +1,7 @@
 
 
 
+
 @import url('https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css');
 @import url('https://cdn.jsdelivr.net/npm/daisyui@5/dist/full.css');
 @import url('https://cdn.jsdelivr.net/npm/daisyui@5/themes.css');
@@ -8,3 +9,13 @@
 
 /* Your custom styles */
 @import './styles.css';
+
+/* ContactPage Styles */
+.contact-hero {
+    background-image: url('./assets/dig-art-1.jpg');
+    object-fit: cover;
+    object-position: center;
+    padding: 15px;
+    width: 100%;
+}
+
