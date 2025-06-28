@@ -11,6 +11,10 @@
     "build:css": "tailwindcss build src/styles/index.css -o src/styles/tailwind.css"
   },
   "dependencies": {
+
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/vite": "^4.1.10",
+
     "@emotion/react": "^11.14.0",
     "@mantine/carousel": "^8.1.1",
     "@mantine/charts": "^8.1.1",
@@ -26,11 +30,15 @@
     "@mantine/spotlight": "^8.1.1",
     "@mantine/tiptap": "^8.1.1",
     "@tabler/icons-react": "^3.34.0",
-    "@tailwindcss/vite": "^4.1.10",
+
     "@tiptap/extension-link": "^2.22.3",
     "@tiptap/pm": "^2.22.3",
     "@tiptap/react": "^2.22.3",
     "@tiptap/starter-kit": "^2.22.3",
+    
+    "flowbite": "^3.1.2",
+    "flowbite-react": "^0.11.8",
+    "tw-elements": "^2.0.0",
     "axios": "^1.10.0",
     "dayjs": "^1.11.13",
     "embla-carousel": "^8.5.2",
@@ -41,6 +49,7 @@
     "recharts": "^2.15.4",
     "uuid": "^11.1.0"
   },
+
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
@@ -54,7 +63,7 @@
     "postcss": "^8.5.6",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "tailwindcss": "^4.1.10",
+    "tailwindcss": "^4.1.11",
     "vite": "^6.3.5"
   }
 }

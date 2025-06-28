@@ -4,10 +4,13 @@ import EventDetail from "./assets/Components/EventDetail";
 import EventList from "./assets/components/EventList";
 import AddEvent from "./assets/Components/AddEvent";
 import Header from "./assets/Components/Header";
+import LandingPage from './assets/LandingPage';
 import { v4 as uuid } from "uuid";
 import "./App.css";
 
+
 function App() {
+  
   const LOCAL_STORAGE_KEY = "eventManagerData";
   const [events, setEvents] = useState([]);
   const [notification, setNotification] = useState(null);
@@ -111,30 +114,33 @@ function App() {
   };
 
   return (
-          <div className="app-container">
-          {notification && (
-            <div className={`notification notification-${notification.type}`}>
-              {notification.message}
-            </div>
-          )}
-
-          <Header />
-          <main className="main-content"></main>
-        </div>
-    // <Route
-    //                 path="events"
-    //                 element={
-    //                   <EventList
-    //                     events={events}
-    //                     onRemoveEvent={removeEventHandler}
-    //                   />
-    //                 }
-    //               />
-    //       <Route
-    //         path="/add"
-    //         element={<AddEvent onAddEvent={addEventHandler} />}
-    //       />
-    //       <Route path="/event/:id" element={<EventDetail events={events} />} />
+    <Router>
+      <LandingPage/>
+      <div className="app-container">
+        {notification && (
+          <div className={`notification notification-${notification.type}`}>
+            {notification.message}
+          </div>
+        )}
+        <Header />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={
+              <EventList 
+                events={events} 
+                onRemoveEvent={removeEventHandler} 
+              />
+            } />
+            <Route path="/add" element={
+              <AddEvent onAddEvent={addEventHandler} />
+            } />
+            <Route path="/event/:id" element={
+              <EventDetail events={events} />
+            } />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 

@@ -2,17 +2,18 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AddEvent({ onAddEvent, currentUserId }) {
+  const [userType, setUserType] = useState(null); // null, 'artist', 'buyer', 'other'
   const [event, setEvent] = useState({
     title: '',
     date: '',
     location: '',
-    theme: 'Technology', // Default theme
+    theme: 'Technology',
     description: '',
     coverImage: null,
     status: 'draft',
     type: 'workshop',
     priority: 'no',
-    creatorId: currentUserId // Initialize with current user ID
+    creatorId: currentUserId
   });
 
   const [imagePreview, setImagePreview] = useState(null);
@@ -27,7 +28,6 @@ function AddEvent({ onAddEvent, currentUserId }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Set minimum date to today
     const today = new Date().toISOString().split('T')[0];
     setEvent(prev => ({ ...prev, date: prev.date || today }));
   }, []);
@@ -40,8 +40,8 @@ function AddEvent({ onAddEvent, currentUserId }) {
       const newEvent = {
         ...event,
         id: Date.now().toString(),
-        creatorId: currentUserId, // Ensure creatorId is set
-        date: new Date(event.date).toISOString() // Standardize date format
+        creatorId: currentUserId,
+        date: new Date(event.date).toISOString()
       };
 
       onAddEvent(newEvent);
@@ -60,7 +60,6 @@ function AddEvent({ onAddEvent, currentUserId }) {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Validate image
       if (!file.type.match('image.*')) {
         alert('Please select an image file');
         return;
@@ -80,6 +79,34 @@ function AddEvent({ onAddEvent, currentUserId }) {
     }
   };
 
+  // Show user type selector if not yet selected
+  if (userType === null) {
+    return (
+      <div className="user-type-modal">
+        <div className="user-type-content">
+          <h3>Are you an Artist, Buyer, or Other?</h3>
+          <div className="user-type-buttons">
+            <button onClick={() => setUserType('artist')}>Artist</button>
+            <button onClick={() => setUserType('buyer')}>Buyer</button>
+            <button onClick={() => setUserType('other')}>Other</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show access denied message for non-artists
+  if (userType !== 'artist') {
+    return (
+      <div className="access-denied">
+        <h2>Event Creation Restricted</h2>
+        <p>Only verified artists can create events.</p>
+        <button onClick={() => navigate('/')}>Return to Home</button>
+      </div>
+    );
+  }
+
+  // Original form (only shown for artists)
   return (
     <div className="add-event-container">
       <div className="form-header">
