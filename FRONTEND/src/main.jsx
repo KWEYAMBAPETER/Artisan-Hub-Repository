@@ -7,10 +7,6 @@ import { AuthProvider } from "./auth/AuthProvider";
 import ProtectedRoute from "./assets/Components/ProtectedRoute";
 import ArtistDashboard from "./pages/ArtistDashboard";
 import BuyerDashboard from "./pages/BuyerDashboard";
-import Header from "./assets/Components/Header";
-import EventList from "./assets/components/EventList";
-import AddEvent from "./assets/Components/AddEvent";
-import EventDetail from "./assets/Components/EventDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ContactPage from "./pages/contactPage";
@@ -30,7 +26,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <MantineProvider>
+        
         <BrowserRouter>
+        
           <Routes>
             <Route path="/" element={<App />}>
             </Route>

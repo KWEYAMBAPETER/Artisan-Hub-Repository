@@ -7,6 +7,7 @@ import Header from "./assets/Components/Header";
 import LandingPage from './assets/LandingPage';
 import { v4 as uuid } from "uuid";
 import "./App.css";
+import { Notifications } from '@mantine/notifications';
 
 
 function App() {
@@ -83,7 +84,7 @@ function App() {
     return () => clearTimeout(timer);
   }, [events]);
 
-  // Rest of your original functions remain exactly the same
+  
   const addEventHandler = (newEvent) => {
     setEvents((prev) => [
       {
@@ -123,6 +124,7 @@ function App() {
           </div>
         )}
         <Header />
+        <Notifications />
         <main className="main-content">
           <Routes>
             <Route path="/" element={

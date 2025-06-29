@@ -17,8 +17,8 @@ const Journey = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-200">
-            <a href="https://weatherandqoutes.netlify.app/">
-              <button className="journey-button-primary">
+            
+              <button  onClick ={handleLogin} className="journey-button-primary">
                 Get Started Now
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -33,12 +33,11 @@ const Journey = () => {
                   />
                 </svg>
               </button>
-            </a>
-            <a href="https://weatherandqoutes.netlify.app/">
-              <button className="journey-button-secondary">
+            
+              <button onClick={handleLogin}className="journey-button-secondary">
                 Learn More
               </button>
-            </a>
+            
           </div>
 
           <div className="mt-12 flex justify-center items-center space-x-4 animate-fade-in delay-300">

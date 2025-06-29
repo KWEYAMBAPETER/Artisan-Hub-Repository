@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 //import Logo from '../images/Logo.jpg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   
   
 
@@ -126,11 +128,11 @@ const Navbar = () => {
           >
             Contact Us
           </a>
-          <a href="https://weatherandqoutes.netlify.app/">
-            <button className="w-full mt-2 px-4 py-2 bg-amber-600 text-white font-medium rounded-md shadow-sm hover:bg-amber-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+          
+            <button onClick={handleLogin} className="w-full mt-2 px-4 py-2 bg-amber-600 text-white font-medium rounded-md shadow-sm hover:bg-amber-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
               Get Started🤩
             </button>
-          </a>
+          
         </div>
       </div>
     </nav>
