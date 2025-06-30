@@ -11,11 +11,8 @@
     "build:css": "tailwindcss build src/styles/index.css -o src/styles/tailwind.css"
   },
   "dependencies": {
-
-    "@tailwindcss/postcss": "^4.1.11",
-    "@tailwindcss/vite": "^4.1.10",
-
     "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@mantine/carousel": "^8.1.1",
     "@mantine/charts": "^8.1.1",
     "@mantine/code-highlight": "^8.1.1",
@@ -29,27 +26,27 @@
     "@mantine/nprogress": "^8.1.1",
     "@mantine/spotlight": "^8.1.1",
     "@mantine/tiptap": "^8.1.1",
+    "@mui/icons-material": "^7.2.0",
     "@tabler/icons-react": "^3.34.0",
-
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/vite": "^4.1.10",
     "@tiptap/extension-link": "^2.22.3",
     "@tiptap/pm": "^2.22.3",
     "@tiptap/react": "^2.22.3",
     "@tiptap/starter-kit": "^2.22.3",
-    
-    "flowbite": "^3.1.2",
-    "flowbite-react": "^0.11.8",
-    "tw-elements": "^2.0.0",
     "axios": "^1.10.0",
     "dayjs": "^1.11.13",
     "embla-carousel": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
+    "flowbite": "^3.1.2",
+    "flowbite-react": "^0.11.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.2",
     "recharts": "^2.15.4",
+    "tw-elements": "^2.0.0",
     "uuid": "^11.1.0"
   },
-
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
