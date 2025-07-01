@@ -5,8 +5,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createTheme, MantineProvider } from "@mantine/core";
 import { AuthProvider } from "./auth/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
-import ArtistDashboard from "./pages/artistDashboard/ArtistDashboard";
-import AddArtwork from "./pages/artistDashboard/AddArtwork";
 import BuyerDashboard from "./pages/BuyerDashboard";
 import Header from "./components/Header";
 import EventList from "./components/EventList";
@@ -18,6 +16,10 @@ import ContactPage from "./pages/contactPage";
 import App from "./App";
 import "./index.css";
 import 'flowbite';
+import ArtistRoutes from "./pages/artistDashboard/ArtistRoutes";
+import '@mantine/core/styles.css';
+// ‼️ import carousel styles after core package styles
+import '@mantine/carousel/styles.css';
 
 // Add external scripts
 const chatwayScript = document.createElement('script');
@@ -47,22 +49,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/contact" element={<ContactPage />} />
 
             {/* Artist dashboard */}
-            <Route
-            path="/artists"
-            element={
-              <ProtectedRoute allowedRoles={["Artist"]}>
-                <ArtistDashboard />
-              </ProtectedRoute>
-            }
-          ></Route>
-            <Route
+            <Route path="/artists/*" element={<ArtistRoutes />} />
+
+            {/* <Route
             path="/artists/add-artwork"
             element={
               <ProtectedRoute allowedRoles={["Artist"]}>
                 <AddArtwork />
               </ProtectedRoute>
             }
-          ></Route>
+          ></Route> */}
 
           {/* Buyer Account */}
           <Route

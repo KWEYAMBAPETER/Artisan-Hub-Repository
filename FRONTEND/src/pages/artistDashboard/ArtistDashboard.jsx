@@ -14,7 +14,7 @@ import {
   Stack,
 } from "@mantine/core";
 import { useAuth } from "../../auth/useAuth";
-import { API_URL, BACKEND_URL } from "../../constants";
+import { API_URL, BACKEND_URL, BEARER } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ArtistLayout from "../../layouts/ArtistLayout";
@@ -32,7 +32,7 @@ function ArtistDashboard() {
           `${API_URL}/art-works?filter[artist][id][$eq]=${user.id}&populate=images`,
           {
             headers: {
-              Authorization: `Bearer ${authToken}`,
+              Authorization: `${BEARER} ${authToken}`,
             },
           }
         );
@@ -104,7 +104,7 @@ function ArtistDashboard() {
                         <Text c="dimmed" size="md">UGX {artWork.attributes.price}</Text>
                         <Text c="dimmed" size="sm">{artWork.attributes.description}</Text>
                     </Group>
-                    <Button variant="light" fullWidth mt="md" radius="md" onClick={() => navigate(`/edit-artWork/${artWork.id}`)}>
+                    <Button variant="light" fullWidth mt="md" radius="md" onClick={() => navigate(`/artists/edit-artwork/${artWork.id}`)}>
                         Edit
                     </Button>
                     {/* <Stack spacing="xs" mt="md">

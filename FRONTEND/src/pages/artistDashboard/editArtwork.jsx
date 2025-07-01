@@ -1,26 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
-  Button,
-  TextInput,
-  Textarea,
-  NumberInput,
-  Select,
-  Stack,
-  Title,
   Container,
+  Stack,
+  TextInput,
+  Title,
+  Group,
+  Image,
+  Textarea,
+  Select,
+  NumberInput,
   FileInput,
-  MultiSelect,
-  Notification,
-  Paper,
+  Button,
+  Text,
 } from "@mantine/core";
+import { Carousel } from "@mantine/carousel"
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/useAuth";
 import ArtistLayout from "../../layouts/ArtistLayout";
-import { API_URL, BEARER } from "../../constants";
 import SlidingNotification from "../../components/SlidingNotification";
+import { API_URL, BEARER, BACKEND_URL } from "../../constants";
 
-const AddArtwork = () => {
+function EditArtWork() {
+  const { id } = useParams();
   const { user, authToken } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -33,8 +35,55 @@ const AddArtwork = () => {
     location: "",
     images: [],
   });
-  const [submitting, setSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [existingImages, setExistingImages] = useState([]);
   const [status, setStatus] = useState({ type: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const fetchArtWork = async () => {
+      try {
+        const res = await axios.get(
+          `${API_URL}/art-works/${id}?populate=images,artist`,
+          {
+            headers: { Authorization: `${BEARER} ${authToken}` },
+          }
+        );
+        const data = res.data.data.attributes;
+
+        if (data.artist?.data?.id !== user.id) {
+          setStatus({
+            type: "error",
+            message: "Unauthorized access. You cannot edit this artwork.",
+          });
+          return;
+        }
+
+        setForm({
+          title: data.title || "",
+          description: data.description || "",
+          price: Number(data.price) || 0,
+          category: data.category || "",
+          artStatus: data.artStatus || "available",
+          deliveryOption: data.deliveryOption || "",
+          location: data.location || "",
+          images: [], // allow only fresh uploads
+        });
+
+        setExistingImages(data.images?.data || []);
+      } catch (err) {
+        console.error("Failed to load artwork: ", err);
+        setStatus({
+          type: "error",
+          message: `Could not load artWork details. Reference: ${err}`,
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchArtWork();
+  }, [id, authToken, user.id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,20 +91,20 @@ const AddArtwork = () => {
     setStatus({ type: "", message: "" });
 
     try {
-      // Handle image uploads
       let imageIds = [];
       if (form.images.length > 0) {
         const data = new FormData();
         form.images.forEach((file) => data.append("files", file));
-        console.log(data);
+        console.log("Data: ", data);
         const uploadRes = await axios.post(`${API_URL}/upload`, data, {
           headers: { Authorization: `${BEARER} ${authToken}` },
         });
+        console.log("Upload Res: ", uploadRes);
         imageIds = uploadRes.data.map((img) => img.id);
       }
 
-      await axios.post(
-        `${API_URL}/art-works`,
+      await axios.put(
+        `${API_URL}/art-works/${id}`,
         {
           data: {
             title: form.title,
@@ -64,9 +113,9 @@ const AddArtwork = () => {
             category: form.category,
             artStatus: form.artStatus,
             deliveryOption: form.deliveryOption,
-            location: form.location,
+            Location: form.location,
             artist: user.id,
-            images: imageIds,
+            ...(imageIds.length > 0 && { images: imageIds }),
           },
         },
         {
@@ -74,24 +123,13 @@ const AddArtwork = () => {
         }
       );
 
-      setStatus({ type: "success", message: "Artwork successfully added!" });
-      setForm({
-        title: "",
-        description: "",
-        price: 0,
-        category: "",
-        artStatus: "available",
-        deliveryOption: "",
-        location: "",
-        images: [],
-      });
-      // setTimeout(() => navigate("/artists/add-artwork"), 1500);
+      setStatus({ type: "success", message: "Artwork updated successfully!" });
+      setTimeout(() => navigate("/artists"), 1500);
     } catch (err) {
-      console.error("Error submitting artwork: ", err);
+      console.error("Error updating artwork: ", err);
       setStatus({
         type: "error",
-        message: "Failed to add artwork. Please try again!. Context: ",
-        err,
+        message: "Failed to update artwork. Please try again.",
       });
     } finally {
       setSubmitting(false);
@@ -104,11 +142,29 @@ const AddArtwork = () => {
         <SlidingNotification type={status.type} message={status.message} />
       )}
 
-      <Container size="sm">
+      <Container>
         <Title order={2} mb="lg">
-          Add New ArtWork
+          Edit ArtWork
         </Title>
 
+        {existingImages.length > 0 && (
+          <Stack mb="md">
+            <Text c="dimmed" size="sm">
+              Existing Images:{" "}
+            </Text>
+            <Carousel withIndicators height={250}>
+              {existingImages.map(img => (
+                <Carousel.Slide key={img.id}>
+                  <Image
+                    src={`${BACKEND_URL}${img.attributes.url}`}
+                    alt="art-preview"
+                    style={{ width: '100%', height: '150%', objectFit: 'fit', borderRadius: '8px' }}
+                  />
+                </Carousel.Slide>
+              ))}
+            </Carousel>
+          </Stack>
+        )}
         <form onSubmit={handleSubmit}>
           <Stack>
             <TextInput
@@ -159,23 +215,23 @@ const AddArtwork = () => {
               required
             />
             <FileInput
-              label="Artwork images"
-              description="Upload one or more artwork images"
-              placeholder="Choose artwork images ..."
+              label="Replace Images (optional)"
+              description="Upload one or more images"
+              placeholder="Upload to replace existing"
               multiple
               value={form.images}
               onChange={(val) => setForm({ ...form, images: val })}
               accept="image/*"
-              required
             />
+
             <Button type="submit" loading={submitting}>
-              Submit Artwork
+              Update Artwork
             </Button>
           </Stack>
         </form>
       </Container>
     </ArtistLayout>
   );
-};
+}
 
-export default AddArtwork;
+export default EditArtWork;
