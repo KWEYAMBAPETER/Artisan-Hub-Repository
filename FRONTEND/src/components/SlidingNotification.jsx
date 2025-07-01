@@ -1,38 +1,77 @@
 // src/components/SlidingNotification.jsx
-import { useEffect, useState } from 'react';
-import { Transition, Paper, Text } from '@mantine/core';
+import { useEffect, useState } from "react";
+import { Transition, Paper, Text, Title } from "@mantine/core";
 
-export default function SlidingNotification({ message, color = 'green', duration = 4000 }) {
-  const [visible, setVisible] = useState(true);
+export default function SlidingNotification({
+  type,
+  message,
+  duration = 3000,
+}) {
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setVisible(false), duration);
-    return () => clearTimeout(timeout);
+    if (message) {
+      setVisible(true);
+      const timeout = setTimeout(() => setVisible(false), duration);
+      return () => clearTimeout(timeout);
+    }
   }, [duration]);
 
+  const bgColor = type === "error" ? "#ffe3e3" : "#d3f9d";
+  const color = type === "error" ? "red" : "green";
+  const title = type === "error" ? "Error" : "Success"
+
   return (
+    // <Transition
+    //   mounted={visible}
+    //   transition="slide-up"
+    //   duration={300}
+    //   timingFunction="ease"
+    // >
+    //   {(styles) => (
+    //     <Paper
+    //       shadow="md"
+    //       p="md"
+    //       radius="md"
+    //       style={{
+    //         position: 'fixed',
+    //         top: 20,
+    //         right: 20,
+    //         zIndex: 1000,
+    //         ...styles,
+    //       }}
+    //       withBorder
+    //       bg={color === 'green' ? 'teal.1' : 'red.1'}
+    //     >
+    //       <Text c={color}>{message}</Text>
+    //     </Paper>
+    //   )}
+    // </Transition>
+
     <Transition
       mounted={visible}
-      transition="slide-up"
+      transition="slide-down"
       duration={300}
       timingFunction="ease"
     >
       {(styles) => (
         <Paper
+          withBorder
           shadow="md"
           p="md"
-          radius="md"
           style={{
-            position: 'fixed',
-            bottom: 20,
+            position: "fixed",
+            top: 20,
             right: 20,
-            zIndex: 1000,
+            zIndex: 9999,
+            backgroundColor: bgColor,
             ...styles,
           }}
-          withBorder
-          bg={color === 'green' ? 'teal.1' : 'red.1'}
         >
-          <Text c={color}>{message}</Text>
+          <Title order={5} c={color}>
+            {title}
+          </Title>
+          <div>{message}</div>
         </Paper>
       )}
     </Transition>

@@ -390,10 +390,12 @@ export interface ApiArtWorkArtWork extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    deliveryOption: Attribute.Enumeration<['pickup', 'delivery']>;
+    deliveryOption: Attribute.Enumeration<
+      ['pickup', 'delivery', 'pickup or delivery']
+    >;
     description: Attribute.RichText & Attribute.Required;
     images: Attribute.Media<'images' | 'files', true>;
-    Location: Attribute.String;
+    location: Attribute.String;
     orders: Attribute.Relation<
       'api::art-work.art-work',
       'manyToMany',

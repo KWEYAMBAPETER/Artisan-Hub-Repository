@@ -11,12 +11,14 @@ import {
   FileInput,
   MultiSelect,
   Notification,
+  Paper,
 } from "@mantine/core";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/useAuth";
 import ArtistLayout from "../../Layouts/ArtistLayout";
 import { API_URL, BACKEND_URL } from "../../constants";
+import SlidingNotification from "../../components/SlidingNotification";
 
 const AddArtwork = () => {
   const { user, authToken } = useAuth();
@@ -73,7 +75,17 @@ const AddArtwork = () => {
       );
 
       setStatus({ type: "success", message: "Artwork successfully added!" });
-      setTimeout(() => navigate("/artists"), 1500);
+      setForm({
+        title: "",
+        description: "",
+        price: 0,
+        category: "",
+        artStatus: "available",
+        deliveryOption: "",
+        location: "",
+        images: [],
+      });
+      // setTimeout(() => navigate("/artists/add-artwork"), 1500);
     } catch (err) {
       console.error("Error submitting artwork: ", err);
       setStatus({
@@ -88,22 +100,14 @@ const AddArtwork = () => {
 
   return (
     <ArtistLayout>
+      {status.message && (
+        <SlidingNotification type={status.type} message={status.message} />
+      )}
+
       <Container size="sm">
         <Title order={2} mb="lg">
           Add New ArtWork
         </Title>
-
-        {status.message && (
-          <Notification
-            color={status.type === "error" ? "red" : "green"}
-            title={status.type === "error" ? "Error" : "Success"}
-            mb="md"
-            withCloseButton
-            onClose={() => setStatus({ type: "", message: "" })}
-          >
-            {status.message}
-          </Notification>
-        )}
 
         <form onSubmit={handleSubmit}>
           <Stack>
@@ -124,7 +128,7 @@ const AddArtwork = () => {
             <NumberInput
               label="Price"
               value={form.price}
-              onChange={(e) => setForm({ ...form, price: e.target.value })}
+              onChange={(val) => setForm({ ...form, price: val })}
               required
             />
             <Select
