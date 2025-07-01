@@ -152,7 +152,7 @@ function EditArtWork() {
             <Text c="dimmed" size="sm">
               Existing Images:{" "}
             </Text>
-            <Carousel withIndicators height={250}>
+            <Carousel withIndicators height={350}>
               {existingImages.map(img => (
                 <Carousel.Slide key={img.id}>
                   <Image
