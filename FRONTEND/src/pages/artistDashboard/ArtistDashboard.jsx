@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   Text,
-  NavLink,
   Image,
   Badge,
   Button,
@@ -16,7 +15,14 @@ import {
   Pagination,
   Paper,
   SimpleGrid,
+  TextInput,
 } from "@mantine/core";
+import PaintIcon from "@mui/icons-material/BrushOutlined";
+import CartIcon from "@mui/icons-material/ShoppingCartOutlined";
+import CheckIcon from "@mui/icons-material/CheckCircleOutline";
+import DollarIcon from "@mui/icons-material/AttachMoneyOutlined";
+import StarIcon from "@mui/icons-material/StarOutline";
+import PendingIcon from "@mui/icons-material/HourglassEmptyOutlined";
 import { useAuth } from "../../auth/useAuth";
 import { API_URL, BACKEND_URL, BEARER } from "../../constants";
 import { useNavigate } from "react-router-dom";
@@ -70,6 +76,15 @@ function ArtistDashboard() {
     }
   }, [user, authToken]);
 
+  const totalEarnings = artWorks
+    .filter((a) => a.attributes.artStatus === "sold")
+    .reduce((sum, a) => sum + parseInt(a.attributes.price || 0), 0);
+
+  const mostExpensive = artWorks.reduce((max, art) => {
+    const price = parseInt(art.attributes.price || 0);
+    return price > max.price ? { title: art.attributes.title, price } : max;
+  }, {title: "-", price: 0})
+
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
       case "available":
@@ -88,21 +103,37 @@ function ArtistDashboard() {
       label: "Total Artworks",
       value: artWorks.length,
       color: "blue",
+      icon: <PaintIcon fontSize="small" color="primary" />,
     },
     {
       label: "Sold",
       value: artWorks.filter((a) => a.attributes.artStatus === "sold").length,
       color: "red",
+      icon: <CheckIcon fontSize="small" color="error" />,
     },
     {
       label: "Available",
       value: artWorks.filter((a) => a.attributes.artStatus === "available").length,
       color: "green",
+      icon: <CartIcon fontSize="small" color="success" />,
     },
     {
       label: "Pending",
       value: artWorks.filter((a) => a.attributes.artStatus === "pending").length,
       color: "gray",
+      icon: <PendingIcon fontSize="small" color="gray" />,
+    },
+    {
+      label: "Total Earnings",
+      value: `UGX ${totalEarnings}`,
+      color: "teal",
+      icon: <DollarIcon fontSize="small" color="success"/>,
+    },
+    {
+      label: "Most Expensive Piece",
+      value: `${mostExpensive.title} (UGX ${mostExpensive.price})`,
+      color: "orange",
+      icon: <StarIcon fontSize="small" color="warning" />,
     },
   ]
 
@@ -124,8 +155,12 @@ function ArtistDashboard() {
                   radius="md"
                   withBorder
                   style={{ backgroundColor: `var(--mantine-color-${metric.color}-0)` }}>
-                  <Text size="lg" fw={600}>{metric.label}</Text>
-                  <Text size="xl" fw={700}>{metric.value}</Text>
+                  <Group align="center" spacing="sm">
+                    {metric.icon}
+                    <Text size="lg" fw={600} c={metric.color}>{metric.label}</Text>
+                  </Group>
+                  
+                  <Text size="xl" fw={700} mt="sm">{metric.value}</Text>
               </Paper>
             ))}
         </SimpleGrid>
