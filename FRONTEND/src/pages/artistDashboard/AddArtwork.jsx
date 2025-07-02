@@ -27,9 +27,9 @@ const AddArtwork = () => {
     title: "",
     description: "",
     price: 0,
-    category: "",
+    category: "Paintings",
     artStatus: "available",
-    deliveryOption: "",
+    deliveryOption: "pickup",
     location: "",
     images: [],
   });
@@ -79,9 +79,9 @@ const AddArtwork = () => {
         title: "",
         description: "",
         price: 0,
-        category: "",
+        category: "Paintings",
         artStatus: "available",
-        deliveryOption: "",
+        deliveryOption: "pickup",
         location: "",
         images: [],
       });
@@ -90,8 +90,8 @@ const AddArtwork = () => {
       console.error("Error submitting artwork: ", err);
       setStatus({
         type: "error",
-        message: "Failed to add artwork. Please try again!. Context: ",
-        err,
+        message: `Failed to add artwork. Please try again!. Context: 
+        ${err}`,
       });
     } finally {
       setSubmitting(false);
