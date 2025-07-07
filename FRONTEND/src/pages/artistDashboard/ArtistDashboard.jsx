@@ -244,7 +244,7 @@ function ArtistDashboard() {
                             alt={artWork.attributes.title}
                             withPlaceholder
                             style={{
-                              objectFit: "fit",
+                              objectFit: "contain",
                               width: "100%",
                               transition: "transform 0.3s ease",
                             }}
@@ -291,10 +291,10 @@ function ArtistDashboard() {
                         mt="md"
                         radius="md"
                         onClick={() =>
-                          navigate(`/artists/edit-artwork/${artWork.id}`)
+                          navigate(`/artists/view-artwork/${artWork.id}`)
                         }
                       >
-                        Edit
+                        View Details
                       </Button>
 
                       {/* <Stack spacing={6} mt="sm" style={{ flex: 1 }}>
