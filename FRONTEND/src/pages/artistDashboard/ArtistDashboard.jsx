@@ -287,6 +287,7 @@ function ArtistDashboard() {
                       </Group>
                       <Button
                         variant="light"
+                        color="orange"
                         fullWidth
                         mt="md"
                         radius="md"
@@ -331,6 +332,7 @@ function ArtistDashboard() {
               <Pagination
                 total={Math.ceil(filteredArtworks.length / itemsPerPage)}
                 page={currentPage}
+                color="orange"
                 onChange={setCurrentPage}
               />
             </Group>

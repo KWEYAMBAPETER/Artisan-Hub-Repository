@@ -14,7 +14,8 @@ function LogoutButton () {
 
 
     return (
-        <Button leftIcon={<IconLogout size={16} />} variant="filled" color="red" onClick={handleLogout} fullWidth>
+        <Button variant="filled" color="red" onClick={handleLogout} fullWidth>
+            <IconLogout size={16} style={{ marginRight: "10px" }}/>
             Logout
         </Button>
     )

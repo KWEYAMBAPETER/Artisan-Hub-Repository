@@ -5,14 +5,20 @@ import {
   Title,
   Group,
   Text,
+  Avatar,
   useMantineTheme,
 } from "@mantine/core";
 import { IconPaint, IconPlus } from "@tabler/icons-react";
 import PaletteIcon from "@mui/icons-material/Palette"
+import BrushIcon from "@mui/icons-material/Brush";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import EditIcon from "@mui/icons-material/Edit";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { useDisclosure } from "@mantine/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import LogoutButton from "../components/LogoutButton";
+import { BACKEND_URL } from "../constants";
 
 function ArtistLayout({ children }) {
   const theme = useMantineTheme();
@@ -24,9 +30,13 @@ function ArtistLayout({ children }) {
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
 
   const navLinks = [
-    { label: "My Artworks", icon: <IconPaint size={18} />, to: "/artists" },
-    { label: "Add Artwork", icon: <IconPlus size={18} />, to: "/artists/add-artwork" },
+    { label: "My Artworks", icon: <BrushIcon fontSize="small" />, to: "/artists" },
+    { label: "Add Artwork", icon: <AddCircleIcon fontSize="small" />, to: "/artists/add-artwork" },
+    { label: "Update Profile", icon: <EditIcon fontSize="small" />, to: "/artists/profile" },
   ];
+
+  const profileImageUrl = user?.profile_photo?.url ? `${BACKEND_URL}${user.profile_photo.url}` : null;
+  const fullName = `${user?.firstName || ''} ${user?.lastName || ''}`.trim();
 
   return (
     <AppShell
@@ -87,14 +97,17 @@ function ArtistLayout({ children }) {
             <PaletteIcon sx={{ color: ['#D97706'], fontSize: 50 }}/>
             <Title order={4} align="center">
               ArtisanHub
-              <Text c="teal" align="left">
+              <Text variant="subtle" align="left" size="sm" style={{ color: "#D97706" }}>
                 for Artists
               </Text>
             </Title>
           </Group>
-          <Text size="md" style={{ marginLeft: "auto" }}>
-            Welcome, {user?.username}
+          <Group style={{ marginLeft: "auto" }}>
+            <Text size="md" fw={600} style={{ marginLeft: "auto", display: "flex,", gap: "5px" }}>
+            Welcome, <span style={{ color: "#D97706"}}>{ (fullName) ? fullName : `Guest` }</span>
           </Text>
+          {profileImageUrl && <Avatar src={profileImageUrl} alt="Profile" radius="xl" size="md" />}
+          </Group>
         </Group>
       </AppShell.Header>
 
@@ -103,13 +116,18 @@ function ArtistLayout({ children }) {
           <NavLink
             key={link.to}
             label={link.label}
-            icon={link.icon}
+            leftSection={link.icon}
             active={location.pathname === link.to}
             onClick={() => {
               navigate(link.to);
-              handlers.close();
             }}
-            style={{ marginBottom: theme.spacing.sm }}
+            style={{ marginBottom: theme.spacing.sm,
+              // backgroundColor: location.pathname === link.to ? '#D97706' : undefined,
+              // color: location.pathname === link.to ? 'white' : undefined,
+              borderRadius: 4,
+             }}
+             variant={location.pathname === link.to ? 'light' : 'subtle'}
+             color={location.pathname === link.to ? 'orange' : undefined}
           />
         ))}
         <Group position="center" mt="auto">

@@ -4,6 +4,7 @@ import ProtectedRoute from "../../components/ProtectedRoute";
 import AddArtwork from "./addArtwork";
 import EditArtWork from "./editArtwork";
 import ArtWorkDetail from "./artworkDetail";
+import ArtistProfile from "./artistProfile";
 
 
 function ArtistRoutes () {
@@ -15,6 +16,7 @@ function ArtistRoutes () {
         <Route path="/add-artwork" element= {<AddArtwork />} />
         <Route path="/edit-artwork/:id" element= {<EditArtWork />} />
         <Route path="/view-artwork/:id" element={<ArtWorkDetail />} />
+        <Route path="/profile" element={<ArtistProfile />} />
     </Routes>
     </ProtectedRoute>
     )

@@ -75,17 +75,17 @@ function Signup() {
       if (res.data.user.role?.name === "Artist") {
         // navigate("/artist-dashboard");
         setTimeout(() => {
-          navigate("/artist"); // or buyer-dashboard
+          navigate("/artists/profile");
         }, 5000);
       } else if (res.data.user.role?.name === "Buyer") {
         // navigate("/buyer-dashboard");
         setTimeout(() => {
-          navigate("/buyer"); // or buyer-dashboard
+          navigate("/buyer");
         }, 5000);
       } else {
         // navigate("/");
         setTimeout(() => {
-          navigate("/"); // or buyer-dashboard
+          navigate("/"); 
         }, 5000);
       }
     } catch (err) {
