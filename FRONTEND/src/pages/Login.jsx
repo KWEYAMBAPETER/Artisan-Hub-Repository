@@ -85,7 +85,7 @@ function Login() {
       if (user.role?.name === "Artist") {
         // navigate("/artist-dashboard");
         setTimeout(() => {
-          navigate("/artist"); // or buyer-dashboard
+          navigate("/artists"); // or buyer-dashboard
         }, 5000);
       } else if (user.role?.name === "Buyer") {
         // navigate("/buyer-dashboard");
@@ -113,7 +113,7 @@ function Login() {
         </a>
       </Text>
 
-      {showSuccess && <SlidingNotification message="Login successful!" />}
+      {showSuccess && <SlidingNotification type="success" message="Login successful!" />}
 
       <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
         <form onSubmit={handleSubmit}>

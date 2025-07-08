@@ -54,10 +54,11 @@
       "type": "enumeration",
       "enum": [
         "pickup",
-        "delivery"
+        "delivery",
+        "pickup or delivery"
       ]
     },
-    "Location": {
+    "location": {
       "type": "string"
     },
     "orders": {

@@ -2,10 +2,9 @@ import React from "react";
 import ReactDOM from 'react-dom/client'
 import "@mantine/core/styles.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MantineProvider } from "@mantine/core";
+import { createTheme, MantineProvider } from "@mantine/core";
 import { AuthProvider } from "./auth/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
-import ArtistDashboard from "./pages/ArtistDashboard";
 import BuyerDashboard from "./pages/BuyerDashboard";
 import Header from "./components/Header";
 import EventList from "./components/EventList";
@@ -17,6 +16,10 @@ import ContactPage from "./pages/contactPage";
 import App from "./App";
 import "./index.css";
 import 'flowbite';
+import ArtistRoutes from "./pages/artistDashboard/ArtistRoutes";
+import '@mantine/core/styles.css';
+// ‼️ import carousel styles after core package styles
+import '@mantine/carousel/styles.css';
 
 // Add external scripts
 const chatwayScript = document.createElement('script');
@@ -25,11 +28,18 @@ chatwayScript.async = true;
 chatwayScript.src = 'https://cdn.chatway.app/widget.js?id=D5aa7Fe1PaOY';
 document.head.appendChild(chatwayScript);
 
+const theme = createTheme({
+
+    colors: {
+      'amber': ['#D97706'],
+    }
+})
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-      <MantineProvider>
+      <MantineProvider theme={theme}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />}>
@@ -39,16 +49,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/contact" element={<ContactPage />} />
 
             {/* Artist dashboard */}
-            <Route
-            path="/artist"
+            <Route path="/artists/*" element={<ArtistRoutes />} />
+
+            {/* <Route
+            path="/artists/add-artwork"
             element={
               <ProtectedRoute allowedRoles={["Artist"]}>
-                <ArtistDashboard />
+                <AddArtwork />
               </ProtectedRoute>
             }
-          >
-          
-          </Route>
+          ></Route> */}
 
           {/* Buyer Account */}
           <Route

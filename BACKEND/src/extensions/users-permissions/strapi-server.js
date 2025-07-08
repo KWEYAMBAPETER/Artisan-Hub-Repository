@@ -157,7 +157,7 @@ module.exports = (plugin) => {
       .query("plugin::users-permissions.user")
       .findOne({
         where: { id: user.id },
-        populate: ["role"],
+        populate: ["role", "profile_photo"],
       });
 
     const sanitizedUser = await sanitize.contentAPI.output(

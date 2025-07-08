@@ -47,7 +47,7 @@ function ContactPage() {
   const handleSubmit = async (values) => {
     setIsLoading(true);
     try {
-      console.log("Submitting values ...", values);
+      // console.log("Submitting values ...", values);
       await axios.post(`${API_URL}/contact-messages`, {
         data: values,
       });
