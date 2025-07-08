@@ -224,7 +224,7 @@ function EditArtWork() {
               accept="image/*"
             />
 
-            <Button type="submit" loading={submitting}>
+            <Button type="submit" loading={submitting} style={{ backgroundColor: "#D97706" }}>
               Update Artwork
             </Button>
           </Stack>

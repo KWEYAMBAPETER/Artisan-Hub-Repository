@@ -168,7 +168,7 @@ const AddArtwork = () => {
               accept="image/*"
               required
             />
-            <Button type="submit" loading={submitting}>
+            <Button type="submit" loading={submitting} style={{ backgroundColor: "#D97706" }}>
               Submit Artwork
             </Button>
           </Stack>

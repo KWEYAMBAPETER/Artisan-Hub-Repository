@@ -30,16 +30,11 @@ function ArtWorkDetail() {
   const [deleting, setDeleting] = useState(false);
   const [opened, setOpened] = useState(false);
 
-  console.log("ID: ", id)
-  console.log("authToken: ", authToken)
-  console.log("ArtWorkDetail component mounted with id:", id);
 
   useEffect(() => {
     if (!id || !authToken) return;
 
-    console.log("Entering useEffect ...")
     const fetchArtWork = async () => {
-      console.log('useEffect: starting fetchArtWork', id, authToken);
       setStatus({ type: "", message: "" });
       try {
         const res = await axios.get(
@@ -49,7 +44,6 @@ function ArtWorkDetail() {
           }
         );
 
-        console.log("API response: ", res);
         setArtWork(res.data.data.attributes);
 
       } catch (err) {
@@ -148,7 +142,7 @@ function ArtWorkDetail() {
                   </Group>
 
                   <Group grow>
-                      <Button color="orange" onClick={() => navigate(`/artists/edit-artwork/${id}`)}>Edit</Button>
+                      <Button style={{ backgroundColor: "#D97706" }} onClick={() => navigate(`/artists/edit-artwork/${id}`)}>Edit</Button>
                       <Button color="red" loading={deleting} onClick={() => setOpened(true)}>Delete</Button>
                   </Group>
               </Stack>

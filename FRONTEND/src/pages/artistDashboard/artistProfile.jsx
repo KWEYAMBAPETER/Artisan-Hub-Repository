@@ -164,7 +164,7 @@ function ArtistProfile () {
                         onChange={(e) => setProfile({ ...profile, bio: e.target.value})} />
 
                     <Group position="right">
-                        <Button loading={updating} onClick={handleSubmit}>Save Changes</Button>
+                        <Button loading={updating} onClick={handleSubmit} style={{ backgroundColor: "#D97706" }}>Save Changes</Button>
                     </Group>
                 </Stack>
             </Container>

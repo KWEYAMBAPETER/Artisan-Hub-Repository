@@ -33,6 +33,7 @@ function ArtistLayout({ children }) {
     { label: "My Artworks", icon: <BrushIcon fontSize="small" />, to: "/artists" },
     { label: "Add Artwork", icon: <AddCircleIcon fontSize="small" />, to: "/artists/add-artwork" },
     { label: "Update Profile", icon: <EditIcon fontSize="small" />, to: "/artists/profile" },
+    { label: "Contact Us", icon: <MailOutlineIcon fontSize="small" />, to: "/artists/contact" },
   ];
 
   const profileImageUrl = user?.profile_photo?.url ? `${BACKEND_URL}${user.profile_photo.url}` : null;
@@ -97,7 +98,7 @@ function ArtistLayout({ children }) {
             <PaletteIcon sx={{ color: ['#D97706'], fontSize: 50 }}/>
             <Title order={4} align="center">
               ArtisanHub
-              <Text variant="subtle" align="left" size="sm" style={{ color: "#D97706" }}>
+              <Text variant="subtle" align="left" size="xs" style={{ color: "#D97706" }}>
                 for Artists
               </Text>
             </Title>
