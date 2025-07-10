@@ -15,6 +15,7 @@ import {
 import { Carousel } from "@mantine/carousel";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { IconTrash } from "@tabler/icons-react";
 import { useAuth } from "../../auth/useAuth";
 import { API_URL, BEARER, BACKEND_URL } from "../../constants";
 import ArtistLayout from "../../layouts/ArtistLayout";
@@ -152,8 +153,11 @@ function ArtWorkDetail() {
         <Modal opened={opened} onClose={() => setOpened(false)} title="Confirm Deletion" centered>
             <Text mb="md">Are you sure you want to delete this artwork?</Text>
             <Group position="apart">
-              <Button variant="outline" onClick={() => setOpened(false)}>Cancel</Button>
-              <Button c="red" onClick={handleDelete} loading={deleting}>Confirm</Button>
+              <Button variant="outline" onClick={() => setOpened(false)} color="#D97706">Cancel</Button>
+              <Button color="red" onClick={handleDelete} loading={deleting}>
+                <IconTrash size={18} style={{ marginRight: "5px" }}/>
+                Confirm
+                </Button>
             </Group>
         </Modal>
       </Container>

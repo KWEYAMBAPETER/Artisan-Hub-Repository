@@ -154,7 +154,7 @@ function Login() {
             </a>
           </Group>
 
-          <Button fullWidth mt="xl" type="submit" loading={loading}>
+          <Button fullWidth mt="xl" type="submit" color="#D97706" loading={loading}>
             Login
           </Button>
 

@@ -36,8 +36,10 @@ function ArtistLayout({ children }) {
     { label: "Contact Us", icon: <MailOutlineIcon fontSize="small" />, to: "/artists/contact" },
   ];
 
-  const profileImageUrl = user?.profile_photo?.url ? `${BACKEND_URL}${user.profile_photo.url}` : null;
   const fullName = `${user?.firstName || ''} ${user?.lastName || ''}`.trim();
+  const DEFAULT_AVATAR = `https://ui-avatars.com/api/?name=${fullName}&background=random&rounded=true`;
+  const profileImageUrl = user?.profile_photo?.url ? `${BACKEND_URL}${user.profile_photo.url}` : DEFAULT_AVATAR;
+  
 
   return (
     <AppShell
@@ -128,7 +130,7 @@ function ArtistLayout({ children }) {
               borderRadius: 4,
              }}
              variant={location.pathname === link.to ? 'light' : 'subtle'}
-             color={location.pathname === link.to ? 'orange' : undefined}
+             color={location.pathname === link.to ? '#D97706' : undefined}
           />
         ))}
         <Group position="center" mt="auto">
