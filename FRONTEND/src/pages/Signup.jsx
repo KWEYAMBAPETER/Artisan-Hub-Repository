@@ -166,7 +166,7 @@ function Signup() {
             />
           </Stack>
 
-          <Button fullWidth mt="xl" type="submit" loading={loading}>
+          <Button fullWidth mt="xl" type="submit" color="#D97706" loading={loading}>
             Create {role} Account
           </Button>
 

@@ -236,11 +236,11 @@ function ArtistDashboard() {
                     >
                       {img && (
                         <Card.Section
-                          style={{ flex: "0 0 130px", overflow: "hidden" }}
+                          style={{ flex: "0 0 140px", overflow: "hidden" }}
                         >
                           <Image
                             src={img}
-                            height={130}
+                            h={140}
                             alt={artWork.attributes.title}
                             withPlaceholder
                             style={{
@@ -287,7 +287,7 @@ function ArtistDashboard() {
                       </Group>
                       <Button
                         variant="light"
-                        color="orange"
+                        color="#D97706"
                         fullWidth
                         mt="md"
                         radius="md"
@@ -332,7 +332,7 @@ function ArtistDashboard() {
               <Pagination
                 total={Math.ceil(filteredArtworks.length / itemsPerPage)}
                 page={currentPage}
-                color="orange"
+                color="#D97706"
                 onChange={setCurrentPage}
               />
             </Group>

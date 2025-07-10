@@ -21,7 +21,7 @@ import SlidingNotification from "../../components/SlidingNotification";
 
 function ArtistProfile () {
 
-    const { user, authToken } = useAuth();
+    const { user, authToken, updateUser } = useAuth();
     const [ profile, setProfile ] = useState({
         username: "",
         email: "",
@@ -105,7 +105,12 @@ function ArtistProfile () {
             })
 
             setStatus({ type: "success", message: "Profile updated successfully!" })
-            // setTimeout(() => navigate("/artists"), 1500);
+            setTimeout(() => navigate("/artists"), 1500);
+            updateUser({
+                firstName: profile.firstName,
+                lastName: profile.lastName,
+                profile_photo: profile.profile_photo,
+            })
         } catch (err) {
             console.error("Update failed", err);
             setStatus({ type: "error", message: "Profile update failed"})
