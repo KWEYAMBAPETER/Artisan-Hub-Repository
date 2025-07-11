@@ -381,7 +381,7 @@ export interface ApiArtWorkArtWork extends Schema.CollectionType {
     >;
     artStatus: Attribute.Enumeration<['available', 'pending', 'sold']>;
     category: Attribute.Enumeration<
-      ['Paintings', 'Digital Art', 'Woodwork', 'Sculptures']
+      ['Paintings', 'Digital Art', 'Woodwork', 'Sculptures', 'Photography']
     >;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -391,8 +391,9 @@ export interface ApiArtWorkArtWork extends Schema.CollectionType {
     > &
       Attribute.Private;
     deliveryOption: Attribute.Enumeration<
-      ['pickup', 'delivery', 'pickup or delivery']
-    >;
+      ['pickup only', 'pickup and delivery']
+    > &
+      Attribute.DefaultTo<'pickup only'>;
     description: Attribute.RichText & Attribute.Required;
     images: Attribute.Media<'images' | 'files', true>;
     location: Attribute.String;
@@ -403,6 +404,7 @@ export interface ApiArtWorkArtWork extends Schema.CollectionType {
     >;
     price: Attribute.BigInteger;
     publishedAt: Attribute.DateTime;
+    stock: Attribute.Integer & Attribute.DefaultTo<1>;
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
@@ -531,11 +533,6 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    art_works: Attribute.Relation<
-      'api::order.order',
-      'manyToMany',
-      'api::art-work.art-work'
-    >;
     artworks: Attribute.Relation<
       'api::order.order',
       'manyToMany',
@@ -556,7 +553,13 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     deliveryAddress: Attribute.Component<'common.delivery-address'>;
     deliveryType: Attribute.Enumeration<['pickup', 'home delivery']> &
       Attribute.DefaultTo<'pickup'>;
-    orderStatus: Attribute.Enumeration<['placed', 'fulfilled']>;
+    orderCode: Attribute.UID;
+    orderStatus: Attribute.Enumeration<
+      ['placed', 'pending', 'fulfilled', 'cancelled', 'processing']
+    > &
+      Attribute.DefaultTo<'placed'>;
+    paymentStatus: Attribute.Enumeration<['unpaid', 'paid', 'failed']> &
+      Attribute.DefaultTo<'unpaid'>;
     publishedAt: Attribute.DateTime;
     totalPrice: Attribute.BigInteger;
     updatedAt: Attribute.DateTime;

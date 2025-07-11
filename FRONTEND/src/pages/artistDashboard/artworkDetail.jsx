@@ -15,7 +15,7 @@ import {
 import { Carousel } from "@mantine/carousel";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { IconTrash } from "@tabler/icons-react";
+import { IconTrash, IconArrowLeft } from "@tabler/icons-react";
 import { useAuth } from "../../auth/useAuth";
 import { API_URL, BEARER, BACKEND_URL } from "../../constants";
 import ArtistLayout from "../../layouts/ArtistLayout";
@@ -106,7 +106,15 @@ function ArtWorkDetail() {
 
       <Container size="md">
         { isLoading && <Loader /> }
-        <Title order={2} p="sm">{artwork.title}</Title>
+        <Group position="apart" mb="lg">
+          <Button
+            variant="light"
+            color="#D97706"
+            leftSection={<IconArrowLeft size={16} />}
+            onClick={() => navigate(`/artists`)}
+          >Back to Dashboard</Button>
+            <Title order={2} p="sm">{artwork.title}</Title>
+        </Group>
 
         <Grid gutter="lg" align="flex-start">
           <Grid.Col span={{ base: 12, md: 8 }}>
@@ -116,7 +124,7 @@ function ArtWorkDetail() {
                   <Carousel.Slide key={img.id}>
                       <Image 
                         src={`${BACKEND_URL}${img.attributes.url}`}
-                        height={400}
+                        h={400}
                         fit="contain"
                         radius="md"
                         alt="Artwork image" />
@@ -130,7 +138,7 @@ function ArtWorkDetail() {
               <Stack spacing="sm">
                   <Group>
                       <Badge fullWidth size="xl">{artwork.category}</Badge>
-                      <Badge color="blue" size="xl" variant="light" fullWidth>UGX {artwork.price}</Badge>
+                      <Badge color="blue" size="xl" variant="light" fullWidth>UGX {parseInt(artwork.price).toLocaleString()}</Badge>
                       <Badge color={getStatusColor(artwork.artStatus)} variant="light" size="xl" fullWidth>{artwork.artStatus}</Badge>
                   </Group>
 
@@ -138,7 +146,7 @@ function ArtWorkDetail() {
 
                   <Group>
                     <Badge color="gray" variant="outline">Delivery options: {artwork.deliveryOption}</Badge>
-                    <Badge color="gray" variant="outline">Stock: 5</Badge>
+                    <Badge color="gray" variant="outline">Stock: {artwork.stock}</Badge>
                     
                   </Group>
 

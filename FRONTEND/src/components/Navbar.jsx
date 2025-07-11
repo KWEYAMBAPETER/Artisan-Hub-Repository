@@ -51,6 +51,12 @@ const Navbar = () => {
             >
               Contact Us
             </a>
+            <Link
+              to="/shop"
+              className="text-amber-900 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-all duration-200 border-b-2 border-transparent hover:border-amber-400"
+            >
+              Shop
+            </Link>
             <Link to="/login">
               <button className="ml-4 px-6 py-2 bg-amber-600 text-white font-medium rounded-full shadow-sm hover:bg-amber-700 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
                 Sign In

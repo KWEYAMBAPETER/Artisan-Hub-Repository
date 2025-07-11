@@ -12,12 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "art_works": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::art-work.art-work",
-      "inversedBy": "orders"
-    },
     "deliveryType": {
       "type": "enumeration",
       "default": "pickup",
@@ -38,8 +32,12 @@
       "type": "enumeration",
       "enum": [
         "placed",
-        "fulfilled"
-      ]
+        "pending",
+        "fulfilled",
+        "cancelled",
+        "processing"
+      ],
+      "default": "placed"
     },
     "artworks": {
       "type": "relation",
@@ -52,6 +50,19 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "orders"
+    },
+    "orderCode": {
+      "type": "uid",
+      "target": "buyer"
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "unpaid",
+        "paid",
+        "failed"
+      ],
+      "default": "unpaid"
     }
   }
 }

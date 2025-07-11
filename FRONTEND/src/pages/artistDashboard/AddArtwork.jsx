@@ -135,7 +135,7 @@ const AddArtwork = () => {
               label="Category"
               value={form.category}
               onChange={(val) => setForm({ ...form, category: val })}
-              data={["Paintings", "Digital Art", "Woodwork", "Sculptures"]}
+              data={["Paintings", "Digital Art", "Woodwork", "Sculptures", "Photography"]}
               required
             />
             <Select
@@ -149,7 +149,7 @@ const AddArtwork = () => {
               label="Delivery Option"
               value={form.deliveryOption}
               onChange={(val) => setForm({ ...form, deliveryOption: val })}
-              data={["pickup", "delivery", "pickup or delivery"]}
+              data={["pickup only", "pickup and delivery"]}
               required
             />
             <TextInput

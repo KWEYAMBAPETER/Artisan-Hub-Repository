@@ -4,13 +4,13 @@ import { useAuth } from "../auth/useAuth";
 const ProtectedRoute = ({ children, allowedRoles = [] }) => {
   const { user, isLoading } = useAuth();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return (<p>Loading...</p>);
 
-  if (!user) return <Navigate to="/login" />;
+  if (!user) return (<Navigate to="/login" />);
 
   const userRole = user.role?.name;
 
-  console.log('Protected route: Role ->', userRole)
+  // console.log('Protected route: Role ->', userRole)
   if (!userRole) return <p>Verifying access...</p>;
 
   if (allowedRoles.length > 0 && !allowedRoles.includes(userRole)) {

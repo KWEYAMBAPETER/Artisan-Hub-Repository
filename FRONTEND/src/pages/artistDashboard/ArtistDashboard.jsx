@@ -196,7 +196,7 @@ function ArtistDashboard() {
             label="Filter by category"
             value={filterCategory}
             onChange={setFilterCategory}
-            data={["all", "Paintings", "Digital Art", "Woodwork", "Sculptures"]}
+            data={["all", "Paintings", "Digital Art", "Woodwork", "Sculptures", "Photography"]}
           />
           <TextInput
             label="Search by title"
@@ -219,6 +219,7 @@ function ArtistDashboard() {
               {paginated.map((artWork) => {
                 const img = `${BACKEND_URL}${artWork.attributes.images?.data[0]?.attributes?.url}`;
                 const status = artWork.attributes.artStatus;
+                const stock = artWork.attributes.stock ?? 1;
 
                 return (
                   <Grid.Col span={4} key={artWork.id}>
@@ -279,7 +280,10 @@ function ArtistDashboard() {
                       </Group>
                       <Group>
                         <Text c="dimmed" size="md">
-                          UGX {artWork.attributes.price}
+                          UGX {parseInt(artWork.attributes.price).toLocaleString()}
+                        </Text>
+                        <Text size="sm" c="gray">
+                          Stock: {stock}
                         </Text>
                         <Text c="dimmed" size="sm" lineClamp={2}>
                           {artWork.attributes.description}
