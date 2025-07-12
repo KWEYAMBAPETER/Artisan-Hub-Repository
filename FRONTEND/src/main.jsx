@@ -13,7 +13,8 @@ import EventDetail from "./components/EventDetail";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ContactPage from "./pages/contactPage";
-import Shop from "./pages/Shop";
+import Shop from "./pages/shop/Shop";
+import ShopDetailPage from "./pages/shop/shopDetail";
 import App from "./App";
 import "./index.css";
 import 'flowbite';
@@ -49,6 +50,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/signup" element={<Signup />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/artwork/:id" element={<ShopDetailPage />} />
 
 
             {/* Artist dashboard */}

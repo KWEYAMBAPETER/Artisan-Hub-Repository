@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { IconShoppingCart } from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 //import Logo from '../images/Logo.jpg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
-  
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartCount(storedCart.length);
+  }, []);
 
   return (
     <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-100 fixed w-full z-50 shadow-sm">
@@ -15,7 +20,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src='https://images.unsplash.com/photo-1746469535771-71a672e8719f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                src="https://images.unsplash.com/photo-1746469535771-71a672e8719f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 className="h-20 w-20 rounded-full border-2 border-amber-100 shadow-sm"
                 alt="Artisan Hub Logo"
               />
@@ -56,6 +61,17 @@ const Navbar = () => {
               className="text-amber-900 hover:text-amber-600 px-3 py-2 text-sm font-medium transition-all duration-200 border-b-2 border-transparent hover:border-amber-400"
             >
               Shop
+            </Link>
+            <Link to="/cart" className="relative">
+              <IconShoppingCart 
+                size={28}
+                stroke={2}
+                className="text-amber-800 hover:text-amber-700 transition" />
+              {cartCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-amber-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
+                  {cartCount}
+                </span>
+              )}
             </Link>
             <Link to="/login">
               <button className="ml-4 px-6 py-2 bg-amber-600 text-white font-medium rounded-full shadow-sm hover:bg-amber-700 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
@@ -107,7 +123,10 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`} id="mobile-menu">
+      <div
+        className={`md:hidden ${isOpen ? "block" : "hidden"}`}
+        id="mobile-menu"
+      >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
           <a
             href="#"
