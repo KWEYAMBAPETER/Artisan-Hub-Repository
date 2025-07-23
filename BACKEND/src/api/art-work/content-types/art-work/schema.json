@@ -27,7 +27,8 @@
         "Paintings",
         "Digital Art",
         "Woodwork",
-        "Sculptures"
+        "Sculptures",
+        "Photography"
       ]
     },
     "price": {
@@ -53,13 +54,19 @@
     "deliveryOption": {
       "type": "enumeration",
       "enum": [
-        "pickup",
-        "delivery",
-        "pickup or delivery"
-      ]
+        "pickup only",
+        "pickup and delivery"
+      ],
+      "default": "pickup only"
     },
     "location": {
       "type": "string"
+    },
+    "artist": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "art_works"
     },
     "orders": {
       "type": "relation",
@@ -67,11 +74,9 @@
       "target": "api::order.order",
       "mappedBy": "artworks"
     },
-    "artist": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "art_works"
+    "stock": {
+      "type": "integer",
+      "default": 1
     }
   }
 }
