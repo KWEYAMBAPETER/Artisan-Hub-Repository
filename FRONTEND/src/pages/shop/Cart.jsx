@@ -13,6 +13,10 @@ function CartPage () {
         setCart(stored)      
     }, [])
 
+    const getTotal = () => {
+        return 100000
+    }
+
     console.log(cart)
 
     return (
@@ -31,10 +35,55 @@ function CartPage () {
                     </Title>
 
                     {cart.length === 0 ? (
-                        <Text>Your cart is empty</Text>
+                        <Text color="dimmed" className='mt-10'>Your cart is empty</Text>
                     ) : (
-                        <Stack spacing="md">
+                        <Stack spacing="md" className='mt-10'>
+                            {cart.map((item) => (
+                                <Group key={item.id} align='flex-start' position='apart' wrap='nowrap'>
+                                    <Group>
+                                        <Image 
+                                          src={item.thumbnail}
+                                          w={80}
+                                          h={80}
+                                          radius="md"
+                                          fit="contain" />
+                                        <div>
+                                            <Text fw={600}>{item.title}</Text>
+                                            <Text size="sm" color='gray'>
+                                                UGX {parseInt(item.price).toLocaleString()}
+                                            </Text>
+                                        </div>
+                                    </Group>
+                                    <Button
+                                        variant='subtle'
+                                        color='red'
+                                        onClick={() => removeFromCart(item.id)}
+                                        leftSection={<IconTrash size={16}/>}>
+                                        Remove
+                                    </Button>
+                                </Group>
+                            ))}
 
+                            <Divider />
+
+                            {/* Total */}
+                            <Group position="apart" className='mt-4'>
+                                <Text fw={500}>Subtotal:</Text>
+                                <Text fw={700} className='text-amber-700'>
+                                    UGX {getTotal().toLocaleString()}
+                                </Text>
+                            </Group>
+
+                            {/* Checkout */}
+                            <Button
+                                fullWidth
+                                size='md'
+                                color='#D97706'
+                                component={Link}
+                                to="/checkout"
+                                className='mt-6'>
+                                Proceed to Checkout
+                            </Button>
                         </Stack>
                     )}
                 </div>
