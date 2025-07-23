@@ -20,7 +20,12 @@ module.exports = {
     createRoleIfNotExists(strapi, {
       name: "Artist",
       type: "artist",
-      description: "Registered artists",
+      description: "Registered artists. Manage all aspects of their profile and artworks.",
+    });
+    createRoleIfNotExists(strapi, {
+      name: "Buyer",
+      type: "buyer",
+      description: "Registered buyers. Browse and purchase artworks.",
     });
   },
 };
