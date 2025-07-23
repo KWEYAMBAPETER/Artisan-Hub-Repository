@@ -5,12 +5,13 @@ const { ApplicationError, ValidationError } = utils.errors;
 const { sanitize } = utils;
 
 module.exports = (plugin) => {
+  // Custom Registration
   plugin.controllers.auth.register = async (ctx) => {
-    // console.log("Custom controller override running ...")
     const pluginStore = strapi.store({
       type: "plugin",
       name: "users-permissions",
     });
+
     const settings = await pluginStore.get({ key: "advanced" });
 
     if (!settings.allow_register) {
@@ -35,10 +36,11 @@ module.exports = (plugin) => {
       throw new ValidationError("Email is already taken");
     }
 
+    // ✅ Match role using the 'type' field
     const roleEntry = await strapi
       .query("plugin::users-permissions.role")
       .findOne({
-        where: { name: role },
+        where: { type: role },
       });
 
     if (!roleEntry) {
@@ -53,7 +55,6 @@ module.exports = (plugin) => {
         username,
         password,
         role: roleEntry.id,
-        // confirmed: settings.email_confirmation,
         confirmed: true,
         provider: "local",
       });
@@ -65,7 +66,7 @@ module.exports = (plugin) => {
         populate: ["role"],
       });
 
-    // Email confirmation flow
+    // Email confirmation
     if (settings.email_confirmation) {
       await strapi
         .plugin("users-permissions")
@@ -74,7 +75,6 @@ module.exports = (plugin) => {
       return ctx.send({ user: newUserWithRole });
     }
 
-    // Replace sanitizeUser with sanitize.output()
     const sanitizedUser = await sanitize.contentAPI.output(
       newUserWithRole,
       strapi.getModel("plugin::users-permissions.user")
@@ -91,9 +91,8 @@ module.exports = (plugin) => {
     });
   };
 
+  // Custom Login
   plugin.controllers.auth.callback = async (ctx) => {
-    // console.log("Custom login override running ...");
-
     const { identifier, password } = ctx.request.body;
 
     if (!identifier || !password) {
@@ -146,6 +145,7 @@ module.exports = (plugin) => {
     });
   };
 
+  // Custom Me Endpoint
   plugin.controllers.user.me = async (ctx) => {
     const user = ctx.state.user;
 
