@@ -1,12 +1,11 @@
 "use strict";
 
+// Do NOT import sanitize from @strapi/utils in Strapi 5
 const utils = require("@strapi/utils");
 const { ApplicationError, ValidationError } = utils.errors;
-const { sanitize } = utils;
 
 module.exports = (plugin) => {
   plugin.controllers.auth.register = async (ctx) => {
-    // console.log("Custom controller override running ...")
     const pluginStore = strapi.store({
       type: "plugin",
       name: "users-permissions",
@@ -74,12 +73,12 @@ module.exports = (plugin) => {
       return ctx.send({ user: newUserWithRole });
     }
 
-    // Replace sanitizeUser with sanitize.output()
-    const sanitizedUser = await sanitize.contentAPI.output(
+    // Use strapi.contentAPI.sanitize.output in Strapi 5
+    const sanitizedUser = await strapi.contentAPI.sanitize.output(
       newUserWithRole,
       strapi.getModel("plugin::users-permissions.user")
     );
-
+    
     const jwt = strapi
       .plugin("users-permissions")
       .service("jwt")
@@ -130,7 +129,8 @@ module.exports = (plugin) => {
       throw new ApplicationError("Your account email is not confirmed");
     }
 
-    const sanitizedUser = await sanitize.contentAPI.output(
+    // Use strapi.contentAPI.sanitize.output in Strapi 5
+    const sanitizedUser = await strapi.contentAPI.sanitize.output(
       user,
       strapi.getModel("plugin::users-permissions.user")
     );
@@ -157,10 +157,11 @@ module.exports = (plugin) => {
       .query("plugin::users-permissions.user")
       .findOne({
         where: { id: user.id },
-        populate: ["role", "profile_photo"],
+        populate: ["role"],
       });
 
-    const sanitizedUser = await sanitize.contentAPI.output(
+    // Use strapi.contentAPI.sanitize.output in Strapi 5
+    const sanitizedUser = await strapi.contentAPI.sanitize.output(
       fullUser,
       strapi.getModel("plugin::users-permissions.user")
     );
