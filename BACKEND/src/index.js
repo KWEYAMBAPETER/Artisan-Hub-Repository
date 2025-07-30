@@ -22,7 +22,7 @@ module.exports = {
         if (plugin && plugin.controllers && plugin.controllers.user) {
           strapi.plugins['users-permissions'].controllers.user.me = plugin.controllers.user.me;
         }
-        strapi.log.info('[DEBUG] users-permissions override applied from src/index.js');
+        // strapi.log.info('[DEBUG] users-permissions override applied from src/index.js');
       }
     } catch (err) {
       strapi.log.error('[ERROR] Failed to apply users-permissions override:', err);
