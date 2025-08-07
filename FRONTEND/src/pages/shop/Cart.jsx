@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Container, Title, Text, Image, Button, Group, Divider, Stack } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconTrash, IconArrowLeft } from '@tabler/icons-react';
-import ShopLayout from '../../layouts/ShopLayout';
+import ShopLayout from '../../layouts/ShopLayout.jsx';
 
 
 function CartPage () {
