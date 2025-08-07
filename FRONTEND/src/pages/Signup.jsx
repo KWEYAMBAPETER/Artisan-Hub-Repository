@@ -12,18 +12,17 @@ import {
   Divider,
   Text,
 } from "@mantine/core";
-import { showNotification } from "@mantine/notifications";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../auth/useAuth";
+import { useAuth } from "../auth/useAuth.js";
 import {
   IconUserPlus,
   IconLock,
   IconMail,
   IconBrandGoogle,
 } from "@tabler/icons-react";
-import { API_URL } from "../constants";
-import SlidingNotification from "../components/SlidingNotification";
+import { API_URL } from "../constants.js";
+import SlidingNotification from "../components/SlidingNotification.jsx";
 
 function Signup() {
   const { login } = useAuth();

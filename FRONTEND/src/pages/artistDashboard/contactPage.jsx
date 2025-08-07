@@ -10,10 +10,10 @@ import {
 } from "@mantine/core";
 import axios from "axios";
 import { useForm, hasLength, isEmail, isNotEmpty } from "@mantine/form";
-import { API_URL } from "../../constants";
-import { useAuth } from "../../auth/useAuth";
-import ArtistLayout from "../../layouts/ArtistLayout";
-import SlidingNotification from "../../components/SlidingNotification";
+import { API_URL } from "../../constants.js";
+import { useAuth } from "../../auth/useAuth.js";
+import ArtistLayout from "../../layouts/ArtistLayout.jsx";
+import SlidingNotification from "../../components/SlidingNotification.jsx";
 
 function ArtistContactPage() {
   const { user } = useAuth();

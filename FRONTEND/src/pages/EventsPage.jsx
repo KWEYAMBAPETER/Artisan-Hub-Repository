@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import EventDetail from "./assets/Components/EventDetail";
-import EventList from "./assets/components/EventList";
-import AddEvent from "./assets/Components/AddEvent";
-import Header from "./assets/Components/Header";
+import EventDetail from "./assets/Components/EventDetail.jsx";
+import EventList from "./assets/components/EventList.jsx";
+import AddEvent from "./assets/Components/AddEvent.jsx";
+import Header from "./assets/Components/Header.jsx";
 import { v4 as uuid } from "uuid";
 
 function Events() {

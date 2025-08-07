@@ -16,9 +16,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { useDisclosure } from "@mantine/hooks";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../auth/useAuth";
-import LogoutButton from "../components/LogoutButton";
-import { BACKEND_URL } from "../constants";
+import { useAuth } from "../auth/useAuth.js";
+import LogoutButton from "../components/LogoutButton.jsx";
+import { BACKEND_URL } from "../constants.js";
 
 function ArtistLayout({ children }) {
   const theme = useMantineTheme();

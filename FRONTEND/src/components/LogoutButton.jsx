@@ -1,5 +1,5 @@
 import { Button } from "@mantine/core";
-import { useAuth } from "../auth/useAuth";
+import { useAuth } from "../auth/useAuth.js";
 import { useNavigate } from "react-router-dom";
 import { IconLogout } from "@tabler/icons-react";
 

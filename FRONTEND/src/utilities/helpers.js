@@ -1,4 +1,4 @@
-import { AUTH_TOKEN } from "../constants";
+import { AUTH_TOKEN } from "../constants.js";
 
 
 export const getToken = () => {

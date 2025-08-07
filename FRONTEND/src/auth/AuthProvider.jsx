@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios"
-import { getToken, setToken, removeToken } from "../utilities/helpers";
-import { API_URL, BEARER } from "../constants";
+import { getToken, setToken, removeToken } from "../utilities/helpers.js";
+import { API_URL, BEARER } from "../constants.js";
 
 export const AuthContext = createContext();
 

@@ -16,11 +16,11 @@ import {
 import { Carousel } from "@mantine/carousel";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../../auth/useAuth";
+import { useAuth } from "../../auth/useAuth.js";
 import { IconArrowLeft } from "@tabler/icons-react";
-import ArtistLayout from "../../layouts/ArtistLayout";
-import SlidingNotification from "../../components/SlidingNotification";
-import { API_URL, BEARER, BACKEND_URL } from "../../constants";
+import ArtistLayout from "../../layouts/ArtistLayout.jsx";
+import SlidingNotification from "../../components/SlidingNotification.jsx";
+import { API_URL, BEARER, BACKEND_URL } from "../../constants.js";
 
 function EditArtWork() {
   const { id } = useParams();

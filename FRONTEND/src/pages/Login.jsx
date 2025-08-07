@@ -1,8 +1,8 @@
 // src/pages/Login.jsx
 import { useState, useEffect } from "react";
-import { useAuth } from "../auth/useAuth";
+import { useAuth } from "../auth/useAuth.js";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../constants";
+import { API_URL } from "../constants.js";
 import axios from "axios";
 
 import {

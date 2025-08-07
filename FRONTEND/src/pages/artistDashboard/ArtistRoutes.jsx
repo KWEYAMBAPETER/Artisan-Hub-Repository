@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import ArtistDashboard from "./artistDashboard";
-import ProtectedRoute from "../../components/ProtectedRoute";
-import AddArtwork from "./addArtwork";
-import EditArtWork from "./editArtwork";
-import ArtWorkDetail from "./artworkDetail";
-import ArtistProfile from "./artistProfile";
-import ArtistContactPage from "./contactPage";
+import ArtistDashboard from "./ArtistDashboard.jsx";
+import ProtectedRoute from "../../components/ProtectedRoute.jsx";
+import AddArtwork from "./AddArtwork.jsx";
+import EditArtWork from "./editArtwork.jsx";
+import ArtWorkDetail from "./artworkDetail.jsx";
+import ArtistProfile from "./artistProfile.jsx";
+import ArtistContactPage from "./contactPage.jsx";
 
 
 function ArtistRoutes () {

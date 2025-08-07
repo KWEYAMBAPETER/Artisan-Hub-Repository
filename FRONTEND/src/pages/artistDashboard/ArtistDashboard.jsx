@@ -23,11 +23,11 @@ import CheckIcon from "@mui/icons-material/CheckCircleOutline";
 import DollarIcon from "@mui/icons-material/AttachMoneyOutlined";
 import StarIcon from "@mui/icons-material/StarOutline";
 import PendingIcon from "@mui/icons-material/HourglassEmptyOutlined";
-import { useAuth } from "../../auth/useAuth";
-import { API_URL, BACKEND_URL, BEARER } from "../../constants";
+import { useAuth } from "../../auth/useAuth.js";
+import { API_URL, BACKEND_URL, BEARER } from "../../constants.js";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ArtistLayout from "../../layouts/ArtistLayout";
+import ArtistLayout from "../../layouts/ArtistLayout.jsx";
 
 function ArtistDashboard() {
   const { user, authToken } = useAuth();
