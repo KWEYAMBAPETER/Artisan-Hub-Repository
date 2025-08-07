@@ -15,10 +15,10 @@ import {
 } from "@mantine/core";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../auth/useAuth.js";
-import ArtistLayout from "../../layouts/ArtistLayout.jsx";
-import { API_URL, BEARER } from "../../constants.js";
-import SlidingNotification from "../../components/SlidingNotification.jsx";
+import { useAuth } from "@/auth/useAuth.js";
+import ArtistLayout from "@/layouts/ArtistLayout.jsx";
+import { API_URL, BEARER } from "@/constants.js";
+import SlidingNotification from "@/components/SlidingNotification.jsx";
 
 const AddArtwork = () => {
   const { user, authToken } = useAuth();

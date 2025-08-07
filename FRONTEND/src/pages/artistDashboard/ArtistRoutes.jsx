@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import ArtistDashboard from "./ArtistDashboard.jsx";
-import ProtectedRoute from "../../components/ProtectedRoute.jsx";
+import ProtectedRoute from "@/components/ProtectedRoute.jsx";
 import AddArtwork from "./AddArtwork.jsx";
 import EditArtWork from "./editArtwork.jsx";
 import ArtWorkDetail from "./artworkDetail.jsx";

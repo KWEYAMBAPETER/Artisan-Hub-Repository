@@ -16,9 +16,9 @@ import { Carousel } from "@mantine/carousel";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { API_URL, BACKEND_URL } from "../../constants.js";
-import ShopLayout from "../../layouts/ShopLayout.jsx";
-import SlidingNotification from "../../components/SlidingNotification.jsx";
+import { API_URL, BACKEND_URL } from "@/constants.js";
+import ShopLayout from "@/layouts/ShopLayout.jsx";
+import SlidingNotification from "@/components/SlidingNotification.jsx";
 
 function ShopDetailPage() {
   const { id } = useParams();

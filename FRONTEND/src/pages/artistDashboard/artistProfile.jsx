@@ -12,11 +12,11 @@ import {
     Loader,
 } from "@mantine/core";
 import axios from "axios";
-import { useAuth } from "../../auth/useAuth.js";
+import { useAuth } from "@/auth/useAuth.js";
 import { useNavigate } from "react-router-dom";
-import { API_URL, BEARER, BACKEND_URL } from "../../constants.js";
-import ArtistLayout from "../../layouts/ArtistLayout.jsx";
-import SlidingNotification from "../../components/SlidingNotification.jsx";
+import { API_URL, BEARER, BACKEND_URL } from "@/constants.js";
+import ArtistLayout from "@/layouts/ArtistLayout.jsx";
+import SlidingNotification from "@/components/SlidingNotification.jsx";
 
 
 function ArtistProfile () {

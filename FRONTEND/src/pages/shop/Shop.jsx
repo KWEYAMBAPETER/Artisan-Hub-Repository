@@ -16,9 +16,9 @@ import {
 } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
-import { API_URL, BACKEND_URL } from "../../constants.js";
-import ShopLayout from "../../layouts/ShopLayout.jsx";
-import SlidingNotification from "../../components/SlidingNotification.jsx";
+import { API_URL, BACKEND_URL } from "@/constants.js";
+import ShopLayout from "@/layouts/ShopLayout.jsx";
+import SlidingNotification from "@/components/SlidingNotification.jsx";
 
 function Shop() {
   const [artworks, setArtworks] = useState([]);

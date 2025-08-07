@@ -16,10 +16,10 @@ import { Carousel } from "@mantine/carousel";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { IconTrash, IconArrowLeft } from "@tabler/icons-react";
-import { useAuth } from "../../auth/useAuth";
-import { API_URL, BEARER, BACKEND_URL } from "../../constants.js";
-import ArtistLayout from "../../layouts/ArtistLayout.jsx";
-import SlidingNotification from "../../components/SlidingNotification.jsx";
+import { useAuth } from "@/auth/useAuth";
+import { API_URL, BEARER, BACKEND_URL } from "@/constants.js";
+import ArtistLayout from "@/layouts/ArtistLayout.jsx";
+import SlidingNotification from "@/components/SlidingNotification.jsx";
 
 function ArtWorkDetail() {
   const { authToken } = useAuth();
